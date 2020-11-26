@@ -40,16 +40,15 @@ weightsFile = "pose_iter_160000.caffemodel"
 # 위의 path에 있는 network 불러오기
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
+max_angle = 
+
 # 이미지 읽어오기
 images = []
-for i in range(0, 29):
+for i in range(0, 28):
     if i < 10:
         images.append(cv2.imread("res/lat_pulldown0" + str(i) + ".jpg"))
     else:
         images.append(cv2.imread("res/lat_pulldown" + str(i) + ".jpg"))
-
-    if i <= 26:
-        continue
 
     # frame.shape = 불러온 이미지에서 height, width, color 받아옴
     imageHeight, imageWidth, _ = images[i].shape
@@ -130,10 +129,10 @@ for i in range(0, 29):
     # 6-7(5,6,7), 3-4(2,3,4)
     if points[2] and points[3] and points[4]:
         angle_RElbow = get_angle(points[2], points[3], points[4])
-        print("오른쪽 팔꿈치: " + str(angle_RElbow))
+        print("왼쪽 팔꿈치: " + str(angle_RElbow))
     if points[5] and points[6] and points[7]:
         angle_LElbow = get_angle(points[5], points[6], points[7])
-        print("왼쪽 팔꿈치: " + str(angle_LElbow))
+        print("오른쪽 팔꿈치: " + str(angle_LElbow))
 
     cv2.imshow("Output-Keypoints" + str(i), imageCopy)
     cv2.waitKey(0)

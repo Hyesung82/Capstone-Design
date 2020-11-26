@@ -41,13 +41,13 @@ weightsFile = "pose_iter_160000.caffemodel"
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # 이미지 읽어오기
-image = cv2.imread("res/lat_pulldown08_LI.jpg")
+image = cv2.imread("res/lat_pulldown17_LI.jpg")
 
 # frame.shape = 불러온 이미지에서 height, width, color 받아옴
 imageHeight, imageWidth, _ = image.shape
 
 # network에 넣기위해 전처리
-inpBlob \
+inpBlob\
     = cv2.dnn.blobFromImage(image, 1.0 / 255, (imageWidth, imageHeight), (0, 0, 0), swapRB=False, crop=False)
 
 # network에 넣어주기
@@ -122,10 +122,10 @@ for j in range(0, 8):  # 해당 POSE_PAIRS에 따라 범위 변경
 # 6-7(5,6,7), 3-4(2,3,4)
 if points[2] and points[3] and points[4]:
     angle_RElbow = get_angle(points[2], points[3], points[4])
-    print("오른쪽 팔꿈치: " + str(angle_RElbow))
+    print("왼쪽 팔꿈치: " + str(angle_RElbow))
 if points[5] and points[6] and points[7]:
     angle_LElbow = get_angle(points[5], points[6], points[7])
-    print("왼쪽 팔꿈치: " + str(angle_LElbow))
+    print("오른쪽 팔꿈치: " + str(angle_LElbow))
 
 cv2.imshow("Output-Keypoints", imageCopy)
 cv2.waitKey(0)
