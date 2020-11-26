@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">cap</string>
+    <string name="mButton">랫풀다운</string>
+    <string name="btn2">벤치프레스</string>
+    <string name="btn3">기본설정</string>
+    <string name="btn4">1RM</string>
+    <string name="btn5">운동하기</string>
+</resources>
