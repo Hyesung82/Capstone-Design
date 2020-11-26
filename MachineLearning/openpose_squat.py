@@ -2,6 +2,7 @@ import cv2
 import math
 import numpy as np
 
+
 def output_keypoints(image_path, proto_file, weights_file, threshold, model_name, BODY_PARTS):
     global points
 
@@ -100,6 +101,7 @@ def output_keypoints_with_lines(POSE_PAIRS, frame):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
+
 def calculate_degree(point_1, point_2, frame):
     # 역탄젠트 구하기
     dx = point_2[0] - point_1[0]
@@ -131,14 +133,14 @@ POSE_PAIRS_BODY_25 = [[0, 1], [0, 15], [0, 16], [1, 2], [1, 5], [1, 8], [8, 9], 
                       [11, 24], [22, 24], [23, 24]]
 
 # 신경 네트워크의 구조를 지정하는 prototxt 파일 (다양한 계층이 배열되는 방법 등)
-protoFile_body_25 = "C:\Openpose\pose_deploy_linevec_faster_4_stages.prototxt"
+protoFile_body_25 = "pose_deploy_linevec_faster_4_stages.prototxt"
 # 훈련된 모델의 weight 를 저장하는 caffemodel 파일
-weightsFile_body_25 ="C:\Openpose\pose_iter_160000.caffemodel"
+weightsFile_body_25 ="pose_iter_160000.caffemodel"
 
 
 # 이미지 경로 (출처: https://www.nongmin.com/plan/PLN/SRS/246508/view)
 path_list = []
-walk_1 = "C:\Openpose\squat\squat_00.jpg"
+walk_1 = "res\squat01.jpg"
 
 
 path_list.extend([walk_1])
@@ -163,6 +165,7 @@ def get_angle(p1, p2, p3):
     if res > 180:
         res = 360 - res
     return res
+
 
 for path in path_list:
     frame_man = output_keypoints(image_path=path, proto_file=protoFile_body_25, weights_file=weightsFile_body_25,
