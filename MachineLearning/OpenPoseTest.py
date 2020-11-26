@@ -40,6 +40,10 @@ weightsFile = "pose_iter_160000.caffemodel"
 # 위의 path에 있는 network 불러오기
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
+# global max_angle, min_angle
+max_angle = 0
+min_angle = 180
+
 # 이미지 읽어오기
 images = []
 for i in range(0, 28):
@@ -47,6 +51,12 @@ for i in range(0, 28):
         images.append(cv2.imread("res/lat_pulldown0" + str(i) + ".jpg"))
     else:
         images.append(cv2.imread("res/lat_pulldown" + str(i) + ".jpg"))
+
+    # 0, 2, 3, 4, 5, 7, 8(랫풀다운이 아님), 14, 15, 17, 18, 19, 20, 26, 27
+    # 반만 제대로 인식됨: 23
+    # Narrow grip: 16
+    if i == 0 or 2 <= i <= 5 or 7 <= i <= 8 or 14 <= i <= 15 or i == 16 or 17 <= i <= 20 or i == 23 or 26 <= i <= 27:
+        continue
 
     # frame.shape = 불러온 이미지에서 height, width, color 받아옴
     imageHeight, imageWidth, _ = images[i].shape
@@ -69,7 +79,7 @@ for i in range(0, 28):
     # 키포인트 검출시 이미지에 그려줌
     points = []
     angles = []  # 포인트 별 각도
-    for j in range(0, 9):  # 상체만: range(0, 9), 하체만: range(9, 16)
+    for j in range(0, 8):  # 가슴 제외, 상체만: range(0, 9), 하체만: range(9, 16)
         # 해당 신체부위 신뢰도 얻음.
         probMap = output[0, j, :, :]
 
@@ -91,7 +101,7 @@ for i in range(0, 28):
             points.append(None)
 
     endTime = time.time()
-    print("걸린 시간: " + (str)(endTime - startTime))
+    print("걸린 시간: " + str(endTime - startTime))
 
     # cv2.imshow("Output-Keypoints", image)
     # cv2.waitKey(0)
@@ -110,8 +120,8 @@ for i in range(0, 28):
     #     if points[partA] and points[partB]:
     #         cv2.line(imageCopy, points[partA], points[partB], (0, 255, 0), 2)
 
-    # 상체만
-    for j in range(0, 8):  # 해당 POSE_PAIRS에 따라 범위 변경
+    # 상체만(가슴 제외)
+    for j in range(0, 7):  # 해당 POSE_PAIRS에 따라 범위 변경
         partA = POSE_PAIRS[j][0]  # Head
         partA = BODY_PARTS[partA]  # 0
         partB = POSE_PAIRS[j][1]  # Neck
@@ -124,16 +134,41 @@ for i in range(0, 28):
     # for point in points:
     #     print(point)
 
+    angle_RElbow = 0
+    angle_LElbow = 0
+
     # 6-7(5,6,7), 3-4(2,3,4)
     if points[2] and points[3] and points[4]:
         angle_RElbow = get_angle(points[2], points[3], points[4])
-        print("왼쪽 팔꿈치: " + str(angle_RElbow))
+        print("오른쪽 팔꿈치: " + str(angle_RElbow))
     if points[5] and points[6] and points[7]:
         angle_LElbow = get_angle(points[5], points[6], points[7])
-        print("오른쪽 팔꿈치: " + str(angle_LElbow))
+        print("왼쪽 팔꿈치: " + str(angle_LElbow))
 
-    cv2.imshow("Output-Keypoints" + str(i), imageCopy)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    cur_angle = (angle_RElbow + angle_LElbow) / 2
 
-# 0, 2, 3(re), 4(re), 5(retry), 7, 8(retry), 9(retry), 14, 15, 16(retry), 17, 18, 19(re), 20, 26, 27, 28(re)
+    # Wide Grip
+    # if cur_angle >= 86:
+    #     cv2.imshow("Output-Keypoints" + str(i), imageCopy)
+
+    # Narrow Grip
+    if cur_angle < 46:
+        cv2.imshow("Output-Keypoints" + str(i), imageCopy)
+        continue
+
+    if i == 2:
+        max_angle = cur_angle
+        min_angle = cur_angle
+    else:
+        max_angle = max(max_angle, cur_angle)
+        min_angle = min(min_angle, cur_angle)
+
+    # print("max_angle: " + str(max_angle) + ", min_angle: " + str(min_angle))
+
+    # cv2.imshow("Output-Keypoints" + str(i), imageCopy)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+print("최대 각도: " + str(max_angle), ", 최소 각도: " + str(min_angle))

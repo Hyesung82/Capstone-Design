@@ -41,7 +41,7 @@ weightsFile = "pose_iter_160000.caffemodel"
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # 이미지 읽어오기
-image = cv2.imread("res/lat_pulldown17_LI.jpg")
+image = cv2.imread("res/lat_pulldown08.jpg")
 
 # frame.shape = 불러온 이미지에서 height, width, color 받아옴
 imageHeight, imageWidth, _ = image.shape
@@ -64,7 +64,7 @@ print("이미지 ID : ", len(output), ", H : ", output.shape[2], ", W : ", outpu
 # 키포인트 검출시 이미지에 그려줌
 points = []
 angles = []  # 포인트 별 각도
-for j in range(0, 9):  # 상체만: range(0, 9), 하체만: range(9, 16)
+for j in range(0, 8):  # 상체만: range(0, 9), 하체만: range(9, 16)
     # 해당 신체부위 신뢰도 얻음.
     probMap = output[0, j, :, :]
 
@@ -106,7 +106,7 @@ imageCopy = image
 #         cv2.line(imageCopy, points[partA], points[partB], (0, 255, 0), 2)
 
 # 상체만
-for j in range(0, 8):  # 해당 POSE_PAIRS에 따라 범위 변경
+for j in range(0, 7):  # 해당 POSE_PAIRS에 따라 범위 변경
     partA = POSE_PAIRS[j][0]  # Head
     partA = BODY_PARTS[partA]  # 0
     partB = POSE_PAIRS[j][1]  # Neck
@@ -122,10 +122,10 @@ for j in range(0, 8):  # 해당 POSE_PAIRS에 따라 범위 변경
 # 6-7(5,6,7), 3-4(2,3,4)
 if points[2] and points[3] and points[4]:
     angle_RElbow = get_angle(points[2], points[3], points[4])
-    print("왼쪽 팔꿈치: " + str(angle_RElbow))
+    print("오른쪽 팔꿈치: " + str(angle_RElbow))
 if points[5] and points[6] and points[7]:
     angle_LElbow = get_angle(points[5], points[6], points[7])
-    print("오른쪽 팔꿈치: " + str(angle_LElbow))
+    print("왼쪽 팔꿈치: " + str(angle_LElbow))
 
 cv2.imshow("Output-Keypoints", imageCopy)
 cv2.waitKey(0)
