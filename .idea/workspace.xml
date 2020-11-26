@@ -2,15 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00306bea-7d91-47cf-98df-03b1ba1f0cec" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/Capstone-Design.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Capstone-Design.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MachineLearning/OpenPoseTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/OpenPoseTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/OpenPoseTestSingle.py" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/OpenPoseTestSingle.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown08.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown08.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown08_LI.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown26.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown26.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/res/lat_pulldown28.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/capston/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/capston/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/capston/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/capston/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/capston/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/migrations/0002_auto_20201107_2307.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/templates/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/templates/result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/templates/set.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/templates/test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/exercise/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,11 +68,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MachineLearning/OpenPoseTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+            <state relative-caret-position="137">
+              <caret line="40" column="54" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1606365363721" expanded="true" signature="439:442" ph="..." />
+                <marker date="1606367298382" expanded="true" signature="439:442" ph="..." />
               </folding>
             </state>
           </provider>
@@ -90,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="width" value="979" />
     <option name="height" value="1040" />
@@ -246,11 +259,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MachineLearning/OpenPoseTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="42" column="12" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="12" />
+        <state relative-caret-position="137">
+          <caret line="40" column="54" selection-start-line="40" selection-start-column="54" selection-end-line="40" selection-end-column="54" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1606365363721" expanded="true" signature="439:442" ph="..." />
+            <marker date="1606367298382" expanded="true" signature="439:442" ph="..." />
           </folding>
         </state>
       </provider>

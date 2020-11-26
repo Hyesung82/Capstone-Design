@@ -40,8 +40,6 @@ weightsFile = "pose_iter_160000.caffemodel"
 # 위의 path에 있는 network 불러오기
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
-max_angle = 
-
 # 이미지 읽어오기
 images = []
 for i in range(0, 28):
