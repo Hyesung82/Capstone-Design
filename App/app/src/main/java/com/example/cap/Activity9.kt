@@ -1,10 +1,12 @@
 package com.example.cap
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class SecondActivity : AppCompatActivity() {
+
+class Activity9 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.second_main);
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity8)
     }
 }
