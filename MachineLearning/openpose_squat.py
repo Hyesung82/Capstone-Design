@@ -172,9 +172,11 @@ for path in path_list:
                                  threshold=0.1, model_name=path.split('\\')[-1], BODY_PARTS=BODY_PARTS_BODY_25)
     output_keypoints_with_lines(POSE_PAIRS=POSE_PAIRS_BODY_25, frame=frame_man)
 
+    # 오른쪽 무릎
     if points[8] and points[9] and points[10]:
         angle_RHip = get_angle(points[8], points[9], points[10])
         print("스쿼트 각도1: " + str(angle_RHip))
+    # 왼쪽 무릎
     if points[11] and points[12] and points[13]:
         angle_LHip = get_angle(points[11], points[12], points[13])
         print("스쿼트 각도2: " + str(angle_LHip))
