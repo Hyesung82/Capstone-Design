@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
-class Activity5 : AppCompatActivity() {
+class RMResultActivity : AppCompatActivity() {
     private lateinit var handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity5)
+        setContentView(R.layout.activity9)
         handler= Handler()
         handler.postDelayed({
             doSomething()
@@ -16,7 +16,7 @@ class Activity5 : AppCompatActivity() {
     }
 
     private fun doSomething() {
-        startActivity(Intent(this, Activity6::class.java))
+        startActivity(Intent(this, ExerciseActivity::class.java))
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 }

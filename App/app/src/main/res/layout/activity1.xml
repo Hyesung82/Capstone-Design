@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="220dp"
     android:paddingRight="10dp"
-    tools:context=".Activity1">
+    tools:context=".SelectActivity">
 
     <TextView
         android:layout_width="322dp"

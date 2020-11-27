@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingTop="100dp"
     android:paddingRight="10dp"
-    tools:context=".Activity2">
+    tools:context=".ExampleActivity">
 
     <VideoView
         android:layout_width="match_parent"

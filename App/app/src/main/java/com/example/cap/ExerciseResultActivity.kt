@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class Activity4 : AppCompatActivity() {
+class ExerciseResultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity4)
+        setContentView(R.layout.activity7)
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {
-            val nextIntent = Intent(this, Activity2::class.java)
+            val nextIntent = Intent(this, MeasureRMActivity::class.java)
             startActivity(nextIntent)
         }
     }

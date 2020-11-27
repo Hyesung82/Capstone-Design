@@ -3,15 +3,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.os.HandlerThread
-import java.util.*
-import kotlin.concurrent.timerTask
 
-class Activity3 : AppCompatActivity() {
+class RMActivity : AppCompatActivity() {
     private lateinit var handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity3)
+        setContentView(R.layout.activity5)
         handler= Handler()
         handler.postDelayed({
             doSomething()
@@ -19,7 +16,7 @@ class Activity3 : AppCompatActivity() {
     }
 
     private fun doSomething() {
-        startActivity(Intent(this, Activity4::class.java))
+        startActivity(Intent(this, RMResultActivity::class.java))
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 }
