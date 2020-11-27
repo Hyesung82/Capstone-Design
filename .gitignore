@@ -1,3 +1,4 @@
 #file
 *.prototxt
 *.caffemodel
+workspace.xml
