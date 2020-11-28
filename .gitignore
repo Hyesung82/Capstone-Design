@@ -2,3 +2,5 @@
 *.prototxt
 *.caffemodel
 workspace.xml
+*.lock
+*.bin
