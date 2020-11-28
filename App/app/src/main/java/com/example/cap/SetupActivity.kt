@@ -2,14 +2,11 @@ package com.example.cap
 import android.Manifest.permission.*
 import android.content.Context
 import android.content.pm.PackageManager
-import android.database.Cursor
 import android.hardware.Camera
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
-import android.provider.MediaStore
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.util.Log
@@ -67,16 +64,23 @@ class SetupActivity : AppCompatActivity() {
 
         val captureButton: Button = findViewById(R.id.button_capture)
         captureButton.setOnClickListener {
-//            TakePicture().execute()
+            // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
+            // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
 
             // get an image from the camera
             mCamera?.takePicture(null, null, mPicture)
 
-            var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-            Log.d("mediafile uri", uri.toString())
-            Log.d("current file name", curFileName)
+            lateinit var uri: Uri
+            handler= Handler()
+            handler.postDelayed({
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
 
-            ivPicture.setImageURI(uri)
+                ivPicture.setImageURI(uri)
+            },1000)
+
+
 
 //            val path = "file:///storage/emulated/0/Pictures/MyCameraApp/IMG_20201128_132455.jpg"
 //            ivPicture.setImageURI(Uri.parse(path))
@@ -101,33 +105,6 @@ class SetupActivity : AppCompatActivity() {
             preview.addView(it)
         }
     }
-
-
-//    public class TakePicture: AsyncTask<String, String, String>() {
-//        override fun doInBackground(vararg urls: String?): String? {
-//            try {
-//                // get an image from the camera
-//                mCamera?.takePicture(null, null, mPicture)
-//
-//                var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-//                Log.d("mediafile uri", uri.toString())
-//                Log.d("current file name", curFileName)
-//
-//                ivPicture.setImageURI(uri)
-//
-////            val path = "file:///storage/emulated/0/Pictures/MyCameraApp/IMG_20201128_132455.jpg"
-////            ivPicture.setImageURI(Uri.parse(path))
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//            }
-//
-//            return null
-//        }
-//
-//        override fun onPostExecute(result: String?) {
-//            super.onPostExecute(result)
-//        }
-//    }
 
 
     private fun doSomething() {
@@ -165,7 +142,6 @@ class SetupActivity : AppCompatActivity() {
             Log.d("TAG","카메라 허가 못받음 ㅠ 젠장!!")
         }
     }
-
 
     /** Check if this device has a camera */
     private fun checkCameraHardware(context: Context): Boolean {
@@ -224,7 +200,7 @@ class SetupActivity : AppCompatActivity() {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         return when (type) {
             MEDIA_TYPE_IMAGE -> {
-                curFileName = "${mediaStorageDir.path}${File.separator}IMG_$timeStamp.jpg"
+                curFileName = "${mediaStorageDir.path}${File.separator}IMG_setup.jpg"
                 File(curFileName)
             }
             MEDIA_TYPE_VIDEO -> {
