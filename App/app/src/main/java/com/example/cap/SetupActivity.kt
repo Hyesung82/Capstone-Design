@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.hardware.Camera
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
@@ -13,6 +14,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,6 +22,7 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
 import android.content.Intent as Intent1
@@ -28,9 +31,17 @@ class SetupActivity : AppCompatActivity() {
     var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
 
-    lateinit var ivPicture: ImageView
+    lateinit var ivPicture1: ImageView
+    lateinit var ivPicture2: ImageView
+    lateinit var ivPicture3: ImageView
+
+    private lateinit var ivPictures: Array<ImageView>
 
     lateinit var curFileName: String
+
+    var pictureNum = 0
+
+    lateinit var mContext: Context
 
     val mPicture = Camera.PictureCallback { data, _ ->
         val pictureFile: File = getOutputMediaFile(MEDIA_TYPE_IMAGE) ?: run {
@@ -49,47 +60,35 @@ class SetupActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var handler: Handler
+    private lateinit var handler1: Handler
+    private lateinit var handler2: Handler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity3)
 
+        // 테스트용 스킵 버튼
+        val skipButton: Button = findViewById(R.id.button_skip)
+        skipButton.setOnClickListener{
+            startActivity(Intent1(this, OKActivity::class.java))
+        }
+
+
+        mContext = this.applicationContext
+
         if (!checkPersmission()) requestPermission()
 
-        ivPicture = findViewById(R.id.iv_picture)
+        ivPicture1 = findViewById(R.id.iv_picture1)
+        ivPicture2 = findViewById(R.id.iv_picture2)
+        ivPicture3 = findViewById(R.id.iv_picture3)
+
+        ivPictures = arrayOf(ivPicture1, ivPicture2, ivPicture3)
 
         if(!checkCameraHardware(this.applicationContext)) {
             Log.d("TAG", "No CameraHardware")
         }
 
         val captureButton: Button = findViewById(R.id.button_capture)
-        captureButton.setOnClickListener {
-            // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
-            // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
-
-            // get an image from the camera
-            mCamera?.takePicture(null, null, mPicture)
-
-            lateinit var uri: Uri
-            handler= Handler()
-            handler.postDelayed({
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
-
-                ivPicture.setImageURI(uri)
-            },1000)
-
-
-
-//            val path = "file:///storage/emulated/0/Pictures/MyCameraApp/IMG_20201128_132455.jpg"
-//            ivPicture.setImageURI(Uri.parse(path))
-        }
-
-//        handler= Handler()
-//        handler.postDelayed({
-//            doSomething()
-//        },2000)
 
         // Create an instance of Camera
         mCamera = getCameraInstance()
@@ -104,12 +103,123 @@ class SetupActivity : AppCompatActivity() {
             val preview: FrameLayout = findViewById(R.id.camera_preview)
             preview.addView(it)
         }
-    }
 
 
-    private fun doSomething() {
-        startActivity(Intent1(this, OKActivity::class.java))
-        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
+        captureButton.setOnClickListener {
+            // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
+            // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
+
+            handler1 = Handler()
+            handler2 = Handler()
+            lateinit var uri: Uri
+
+            // setup1
+            handler1.postDelayed({
+                pictureNum++
+                // 3초 후 다시 찰칵
+                Toast.makeText(mContext,"setup1: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+
+            },3000)
+
+            handler2.postDelayed({
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
+
+                ivPictures[0].setImageURI(uri)
+
+                mPreview = null
+
+                // Create an instance of Camera
+                mCamera = getCameraInstance()
+
+                mPreview = mCamera?.let {
+                    // Create our Preview view
+                    CameraPreview(this, it)
+                }
+
+                // Set the Preview view as the content of our activity.
+                mPreview?.also {
+                    val preview1: FrameLayout = findViewById(R.id.camera_preview)
+                    preview1.addView(it)
+                }
+            },4000)
+
+
+            // setup2
+            handler1.postDelayed({
+                pictureNum++
+                // 3초 후 다시 찰칵
+                Toast.makeText(mContext,"setup2: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+
+            },7000)
+
+            handler2.postDelayed({
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
+
+                ivPictures[1].setImageURI(uri)
+
+                // Create an instance of Camera
+                mCamera = getCameraInstance()
+
+                mPreview = mCamera?.let {
+                    // Create our Preview view
+                    CameraPreview(this, it)
+                }
+
+                // Set the Preview view as the content of our activity.
+                mPreview?.also {
+                    val preview2: FrameLayout = findViewById(R.id.camera_preview)
+                    preview2.addView(it)
+                }
+            },8000)
+
+
+            // setup3
+            handler1.postDelayed({
+                pictureNum++
+                // 3초 후 다시 찰칵
+                Toast.makeText(mContext,"setup3: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+
+            },10000)
+
+            handler2.postDelayed({
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
+
+                ivPictures[2].setImageURI(uri)
+
+                // Create an instance of Camera
+                mCamera = getCameraInstance()
+
+                mPreview = mCamera?.let {
+                    // Create our Preview view
+                    CameraPreview(this, it)
+                }
+
+                // Set the Preview view as the content of our activity.
+                mPreview?.also {
+                    val preview3: FrameLayout = findViewById(R.id.camera_preview)
+                    preview3.addView(it)
+                }
+            },11000)
+
+
+            // AsyncTask에서는 view를 변경할 수 없음 ㅠㅠ -> 사용 X
+//            TaskTakePicture1().execute()
+        }
     }
 
 
@@ -137,9 +247,9 @@ class SetupActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d("TAG", "Permission: " + permissions[0] + "was " + grantResults[0] + "카메라 허가 받음 예이^^")
+            Log.d("TAG", "Permission: " + permissions[0] + "was " + grantResults[0])
         }else{
-            Log.d("TAG","카메라 허가 못받음 ㅠ 젠장!!")
+            Log.d("TAG","Permission: " + permissions[0] + "was " + grantResults[0])
         }
     }
 
@@ -200,13 +310,91 @@ class SetupActivity : AppCompatActivity() {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         return when (type) {
             MEDIA_TYPE_IMAGE -> {
-                curFileName = "${mediaStorageDir.path}${File.separator}IMG_setup.jpg"
+                curFileName = "${mediaStorageDir.path}${File.separator}IMG_setup$pictureNum.jpg"
                 File(curFileName)
             }
             MEDIA_TYPE_VIDEO -> {
                 File("${mediaStorageDir.path}${File.separator}VID_$timeStamp.mp4")
             }
             else -> null
+        }
+    }
+
+    inner class TaskTakePicture1: AsyncTask<URL, Integer, Long>() {
+        override fun doInBackground(vararg p0: URL?): Long? {
+            lateinit var uri: Uri
+
+            pictureNum++
+            // 3초 후 다시 찰칵
+//            Toast.makeText(mContext,"setup1: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+            // get an image from the camera
+            mCamera?.takePicture(null, null, mPicture)
+
+            uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+            Log.d("mediafile uri", uri.toString())
+            Log.d("current file name", curFileName)
+
+            ivPictures[0].setImageURI(uri)
+
+            return null
+        }
+
+        override fun onPostExecute(result: Long?) {
+            TaskTakePicture2().execute()
+        }
+    }
+
+    inner class TaskTakePicture2: AsyncTask<URL, Integer, Long>() {
+        override fun doInBackground(vararg p0: URL?): Long? {
+            lateinit var uri: Uri
+
+                pictureNum++
+                // 3초 후 다시 찰칵
+//                Toast.makeText(mContext,"setup2: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+
+
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
+
+                ivPictures[1].setImageURI(uri)
+
+            return null
+        }
+
+
+        override fun onPostExecute(result: Long?) {
+            TaskTakePicture3().execute()
+        }
+    }
+
+    inner class TaskTakePicture3: AsyncTask<URL, Integer, Long>() {
+        override fun doInBackground(vararg p0: URL?): Long? {
+            lateinit var uri: Uri
+
+                pictureNum++
+                // 3초 후 다시 찰칵
+//                Toast.makeText(mContext,"setup3: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+                // get an image from the camera
+                mCamera?.takePicture(null, null, mPicture)
+
+
+                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+                Log.d("mediafile uri", uri.toString())
+                Log.d("current file name", curFileName)
+
+                ivPictures[2].setImageURI(uri)
+
+            return null
+        }
+
+        override fun onPostExecute(result: Long?) {
+            startActivity(Intent1(mContext, OKActivity::class.java))
         }
     }
 }

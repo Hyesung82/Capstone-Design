@@ -45,19 +45,64 @@
             android:layout_width="180dp"
             android:layout_height="320dp">
 
+            <FrameLayout
+                android:id="@+id/camera_preview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/camera_preview2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/camera_preview3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </FrameLayout>
         </FrameLayout>
 
-        <ImageView
-            android:id="@+id/iv_picture"
-            android:layout_width="90dp"
-            android:layout_height="160dp"
-            tools:srcCompat="@tools:sample/avatars" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_picture1"
+                android:layout_width="@dimen/picture_preview_width"
+                android:layout_height="@dimen/picture_preview_height"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/iv_picture2"
+                android:layout_width="@dimen/picture_preview_width"
+                android:layout_height="@dimen/picture_preview_height"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <ImageView
+                android:id="@+id/iv_picture3"
+                android:layout_width="@dimen/picture_preview_width"
+                android:layout_height="@dimen/picture_preview_height"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Camera Test" />
+
+        <Button
+            android:id="@+id/button_skip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Skip(for test)" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
