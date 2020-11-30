@@ -9,8 +9,8 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
-import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.util.Log
+import android.view.SurfaceView
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -23,13 +23,13 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.*
 import android.content.Intent as Intent1
 
 class SetupActivity : AppCompatActivity() {
     var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
+
+    lateinit var surfaceView: SurfaceView
 
     lateinit var ivPicture1: ImageView
     lateinit var ivPicture2: ImageView
@@ -60,8 +60,6 @@ class SetupActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var handler1: Handler
-    private lateinit var handler2: Handler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,9 +71,11 @@ class SetupActivity : AppCompatActivity() {
             startActivity(Intent1(this, OKActivity::class.java))
         }
 
-
         mContext = this.applicationContext
 
+        if(!checkCameraHardware(this.applicationContext)) {
+            Log.d("TAG", "No CameraHardware")
+        }
         if (!checkPersmission()) requestPermission()
 
         ivPicture1 = findViewById(R.id.iv_picture1)
@@ -84,9 +84,6 @@ class SetupActivity : AppCompatActivity() {
 
         ivPictures = arrayOf(ivPicture1, ivPicture2, ivPicture3)
 
-        if(!checkCameraHardware(this.applicationContext)) {
-            Log.d("TAG", "No CameraHardware")
-        }
 
         val captureButton: Button = findViewById(R.id.button_capture)
 
@@ -109,113 +106,9 @@ class SetupActivity : AppCompatActivity() {
             // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
             // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
 
-            handler1 = Handler()
-            handler2 = Handler()
-            lateinit var uri: Uri
-
-            // setup1
-            handler1.postDelayed({
-                pictureNum++
-                // 3초 후 다시 찰칵
-                Toast.makeText(mContext,"setup1: 지금 찰칵!", Toast.LENGTH_SHORT).show()
-
-                // get an image from the camera
-                mCamera?.takePicture(null, null, mPicture)
-
-            },3000)
-
-            handler2.postDelayed({
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
-
-                ivPictures[0].setImageURI(uri)
-
-                mPreview = null
-
-                // Create an instance of Camera
-                mCamera = getCameraInstance()
-
-                mPreview = mCamera?.let {
-                    // Create our Preview view
-                    CameraPreview(this, it)
-                }
-
-                // Set the Preview view as the content of our activity.
-                mPreview?.also {
-                    val preview1: FrameLayout = findViewById(R.id.camera_preview)
-                    preview1.addView(it)
-                }
-            },4000)
-
-
-            // setup2
-            handler1.postDelayed({
-                pictureNum++
-                // 3초 후 다시 찰칵
-                Toast.makeText(mContext,"setup2: 지금 찰칵!", Toast.LENGTH_SHORT).show()
-
-                // get an image from the camera
-                mCamera?.takePicture(null, null, mPicture)
-
-            },7000)
-
-            handler2.postDelayed({
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
-
-                ivPictures[1].setImageURI(uri)
-
-                // Create an instance of Camera
-                mCamera = getCameraInstance()
-
-                mPreview = mCamera?.let {
-                    // Create our Preview view
-                    CameraPreview(this, it)
-                }
-
-                // Set the Preview view as the content of our activity.
-                mPreview?.also {
-                    val preview2: FrameLayout = findViewById(R.id.camera_preview)
-                    preview2.addView(it)
-                }
-            },8000)
-
-
-            // setup3
-            handler1.postDelayed({
-                pictureNum++
-                // 3초 후 다시 찰칵
-                Toast.makeText(mContext,"setup3: 지금 찰칵!", Toast.LENGTH_SHORT).show()
-
-                // get an image from the camera
-                mCamera?.takePicture(null, null, mPicture)
-
-            },10000)
-
-            handler2.postDelayed({
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
-
-                ivPictures[2].setImageURI(uri)
-
-                // Create an instance of Camera
-                mCamera = getCameraInstance()
-
-                mPreview = mCamera?.let {
-                    // Create our Preview view
-                    CameraPreview(this, it)
-                }
-
-                // Set the Preview view as the content of our activity.
-                mPreview?.also {
-                    val preview3: FrameLayout = findViewById(R.id.camera_preview)
-                    preview3.addView(it)
-                }
-            },11000)
-
+            for (index in 0..2) {
+                shootAndStore(index)
+            }
 
             // AsyncTask에서는 view를 변경할 수 없음 ㅠㅠ -> 사용 X
 //            TaskTakePicture1().execute()
@@ -223,7 +116,7 @@ class SetupActivity : AppCompatActivity() {
     }
 
 
-    val REQUEST_IMAGE_CAPTURE = 1
+    private val REQUEST_IMAGE_CAPTURE = 1
     private fun requestPermission() {
         ActivityCompat.requestPermissions(this,
             arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA), REQUEST_IMAGE_CAPTURE)
@@ -239,6 +132,7 @@ class SetupActivity : AppCompatActivity() {
                     android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
     }
 
+
     // 권한요청 결과
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -247,7 +141,8 @@ class SetupActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d("TAG", "Permission: " + permissions[0] + "was " + grantResults[0])
+            Log.d("TAG", "Permission: " + permissions[0] + " was " + grantResults[0])
+            Log.d("권한 요청 결과", "권한 얻음")
         }else{
             Log.d("TAG","Permission: " + permissions[0] + "was " + grantResults[0])
         }
@@ -307,18 +202,66 @@ class SetupActivity : AppCompatActivity() {
         }
 
         // Create a media file name
-        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+//        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
         return when (type) {
             MEDIA_TYPE_IMAGE -> {
                 curFileName = "${mediaStorageDir.path}${File.separator}IMG_setup$pictureNum.jpg"
+//                curFileName = Environment.getExternalStorageDirectory().getPath() + "/Pictures/capstone/IMG_setup$pictureNum.jpg"
+
                 File(curFileName)
             }
-            MEDIA_TYPE_VIDEO -> {
-                File("${mediaStorageDir.path}${File.separator}VID_$timeStamp.mp4")
-            }
+//            MEDIA_TYPE_VIDEO -> {
+//                File("${mediaStorageDir.path}${File.separator}VID_$timeStamp.mp4")
+//            }
             else -> null
         }
     }
+
+
+    private fun shootAndStore(num: Int) {
+        var handler1 = Handler()
+        var handler2 = Handler()
+        val millis = num.toLong()
+
+        handler1.postDelayed({
+            pictureNum++
+            // 3초 후 다시 찰칵
+            Toast.makeText(mContext,"setup${num+1}: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+
+            // get an image from the camera
+            mCamera?.takePicture(null, null, mPicture)
+
+        },3000 + millis * 3000)
+
+        handler2.postDelayed({
+            // 태블릿에서만 파일이 저장됨ㅠㅠ
+            // 사진 촬영 후 프리뷰가 멈추는 이유는 아래 작업들 때문!
+            // 하지만 아래 작업들은 프리뷰 호출과 관련이 없음
+            // -> getOutputMediaFileUri를 확인해볼 것
+//            var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+//            Log.d("mediafile uri", uri.toString())
+//            Log.d("current file name", curFileName)
+//
+//            ivPictures[num - 1].setImageURI(uri)
+
+            mPreview = null
+
+            // Create an instance of Camera
+            mCamera = getCameraInstance()
+
+            mPreview = mCamera?.let {
+                // Create our Preview view
+                CameraPreview(this, it)
+            }
+
+            // Set the Preview view as the content of our activity.
+            mPreview?.also {
+                val preview1: FrameLayout = findViewById(R.id.camera_preview)
+                preview1.addView(it)
+            }
+        },4000 + millis * 3000)
+    }
+
 
     inner class TaskTakePicture1: AsyncTask<URL, Integer, Long>() {
         override fun doInBackground(vararg p0: URL?): Long? {
