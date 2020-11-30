@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.net.toUri
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -240,9 +241,9 @@ class SetupActivity : AppCompatActivity() {
             // -> getOutputMediaFileUri를 확인해볼 것
 //            var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
 //            Log.d("mediafile uri", uri.toString())
-//            Log.d("current file name", curFileName)
-//
-//            ivPictures[num - 1].setImageURI(uri)
+
+            Log.d("current file name", curFileName)
+            ivPictures[num].setImageURI(curFileName.toUri())
 
             mPreview = null
 
