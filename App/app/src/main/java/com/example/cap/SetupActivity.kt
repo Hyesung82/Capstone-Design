@@ -14,10 +14,7 @@ import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -27,13 +24,18 @@ import java.net.URL
 import android.content.Intent as Intent1
 
 class SetupActivity : AppCompatActivity() {
+    var activityType = 3
+
     var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
 
     lateinit var ivPicture1: ImageView
     lateinit var ivPicture2: ImageView
     lateinit var ivPicture3: ImageView
-
+    lateinit var ivPicture4: ImageView
+    lateinit var ivPicture5: ImageView
+    lateinit var ivPicture6: ImageView
+    lateinit var ivPicture7: ImageView
     lateinit var ivPictures: Array<ImageView>
 
     lateinit var curFileName: String
@@ -77,6 +79,18 @@ class SetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity3)
 
+        var intent = getIntent()
+
+
+        var activity = intent.extras?.getString("activity")
+        if (activity.equals("rm")) {
+            val tvIterNum: TextView = findViewById(R.id.tvIterNum)
+            tvIterNum.setText("충분히 무겁다고 생각하는 무게를 7번 반복해주세요!")
+
+            activityType = 7
+        }
+
+
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener{
@@ -96,7 +110,16 @@ class SetupActivity : AppCompatActivity() {
         ivPicture2 = findViewById(R.id.iv_picture2)
         ivPicture3 = findViewById(R.id.iv_picture3)
 
-        ivPictures = arrayOf(ivPicture1, ivPicture2, ivPicture3)
+        ivPictures = if (activityType == 7) {
+            ivPicture4 = findViewById(R.id.iv_picture4)
+            ivPicture5 = findViewById(R.id.iv_picture5)
+            ivPicture6 = findViewById(R.id.iv_picture6)
+            ivPicture7 = findViewById(R.id.iv_picture7)
+            arrayOf(ivPicture1, ivPicture2, ivPicture3,
+                    ivPicture4, ivPicture5, ivPicture6, ivPicture7)
+        } else {
+            arrayOf(ivPicture1, ivPicture2, ivPicture3)
+        }
 
 
         val captureButton: Button = findViewById(R.id.button_capture)
@@ -120,7 +143,7 @@ class SetupActivity : AppCompatActivity() {
             // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
             // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
 
-            for (index in 0..2) {
+            for (index in 0 until activityType) {
                 shootAndStore(index)
             }
 
@@ -332,9 +355,8 @@ class SetupActivity : AppCompatActivity() {
 
     inner class TaskTakePicture3: AsyncTask<URL, Integer, Long>() {
         override fun doInBackground(vararg p0: URL?): Long? {
-            lateinit var uri: Uri
 
-                pictureNum++
+            pictureNum++
                 // 3초 후 다시 찰칵
 //                Toast.makeText(mContext,"setup3: 지금 찰칵!", Toast.LENGTH_SHORT).show()
 
@@ -342,7 +364,7 @@ class SetupActivity : AppCompatActivity() {
                 mCamera?.takePicture(null, null, mPicture)
 
 
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+            var uri: Uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
                 Log.d("mediafile uri", uri.toString())
                 Log.d("current file name", curFileName)
 
