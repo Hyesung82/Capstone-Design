@@ -1,5 +1,6 @@
 package com.example.cap
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.util.Log
 import android.view.SurfaceHolder
@@ -10,8 +11,6 @@ class CameraPreview(
     context: Context,
     private val mCamera: android.hardware.Camera
 ) : SurfaceView(context), SurfaceHolder.Callback {
-
-    val TAG = "TAG"
 
     private val mHolder: SurfaceHolder = holder.apply {
         // Install a SurfaceHolder.Callback so we get notified when the
@@ -29,16 +28,13 @@ class CameraPreview(
                 setPreviewDisplay(holder)
                 startPreview()
             } catch (e: IOException) {
-                Log.d(TAG, "Error setting camera preview: ${e.message}")
+                Log.e(TAG, "Error setting camera preview: ${e.message}")
             }
         }
-
-        Log.d("TAG", "surfaceCreated 호출")
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder) {
         // empty. Take care of releasing the Camera preview in your activity.
-        Log.d("TAG", "surfaceDestroyed 호출")
     }
 
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, w: Int, h: Int) {
@@ -46,14 +42,12 @@ class CameraPreview(
         // Make sure to stop the preview before resizing or reformatting it.
         if (mHolder.surface == null) {
             // preview surface does not exist
-            Log.d("TAG", "프리뷰 서피스가 존재하지 않음")
             return
         }
 
         // stop preview before making changes
         try {
             mCamera.stopPreview()
-            Log.d("TAG", "프리뷰 멈춤")
         } catch (e: Exception) {
             // ignore: tried to stop a non-existent preview
         }
@@ -66,12 +60,9 @@ class CameraPreview(
             try {
                 setPreviewDisplay(mHolder)
                 startPreview()
-                Log.d("TAG", "프리뷰 재시작")
             } catch (e: Exception) {
-                Log.d(TAG, "Error starting camera preview: ${e.message}")
+                Log.e(TAG, "Error starting camera preview: ${e.message}")
             }
         }
-
-        Log.d("TAG", "surfaceChanged 호출")
     }
 }

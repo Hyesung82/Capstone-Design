@@ -2,6 +2,7 @@ package com.example.cap
 
 import android.Manifest.permission.*
 import android.content.Context
+import android.content.ContentValues.TAG
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -46,7 +47,7 @@ class SetupActivity : AppCompatActivity() {
 
     val mPicture = Camera.PictureCallback { data, _ ->
         val pictureFile: File = getOutputMediaFile(MEDIA_TYPE_IMAGE) ?: run {
-            Log.d("TAG", ("Error creating media file, check storage permissions"))
+            Log.e(TAG, ("Error creating media file, check storage permissions"))
             return@PictureCallback
         }
 
@@ -68,9 +69,9 @@ class SetupActivity : AppCompatActivity() {
             fos.write(bitmapData)
             fos.close()
         } catch (e: FileNotFoundException) {
-            Log.d("TAG", "File not found: ${e.message}")
+            Log.e(TAG, "File not found: ${e.message}")
         } catch (e: IOException) {
-            Log.d("TAG", "Error accessing file: ${e.message}")
+            Log.e(TAG, "Error accessing file: ${e.message}")
         }
     }
 
@@ -85,7 +86,7 @@ class SetupActivity : AppCompatActivity() {
         var activity = intent.extras?.getString("activity")
         if (activity.equals("rm")) {
             val tvIterNum: TextView = findViewById(R.id.tvIterNum)
-            tvIterNum.setText("충분히 무겁다고 생각하는 무게를 7번 반복해주세요!")
+            tvIterNum.text = "충분히 무겁다고 생각하는 무게를 7번 반복해주세요!"
 
             activityType = 7
         }
@@ -102,7 +103,7 @@ class SetupActivity : AppCompatActivity() {
 
         // 앱의 메인액티비티에서 체크하도록 변경할 것
         if(!checkCameraHardware(this.applicationContext)) {
-            Log.d("TAG", "No CameraHardware")
+            Log.d(TAG, "No CameraHardware")
         }
         if (!checkPersmission()) requestPermission()
 
@@ -178,10 +179,10 @@ class SetupActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Log.d("TAG", "Permission: " + permissions[0] + " was " + grantResults[0])
+            Log.d(TAG, "Permission: " + permissions[0] + " was " + grantResults[0])
             Log.d("권한 요청 결과", "권한 얻음")
         }else{
-            Log.d("TAG","Permission: " + permissions[0] + "was " + grantResults[0])
+            Log.d(TAG,"Permission: " + permissions[0] + "was " + grantResults[0])
         }
     }
 
@@ -256,8 +257,8 @@ class SetupActivity : AppCompatActivity() {
 
 
     private fun shootAndStore(num: Int) {
-        var handler1 = Handler()
-        var handler2 = Handler()
+        val handler1 = Handler()
+        val handler2 = Handler()
         val millis = num.toLong()
 
         handler1.postDelayed({

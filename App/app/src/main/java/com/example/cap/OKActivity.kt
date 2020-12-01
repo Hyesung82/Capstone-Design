@@ -15,4 +15,8 @@ class OKActivity : AppCompatActivity() {
             startActivity(nextIntent)
         }
     }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+    }
 }
