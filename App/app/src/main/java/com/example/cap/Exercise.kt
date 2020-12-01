@@ -36,18 +36,22 @@ class Exercise : AppCompatActivity() {
 
 
     /* private fun Rmpopup() {
+=======
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-                startActivity(Intent1(this, RmResult::class.java))
+                startActivity(nextIntent)
             })
         builder.show()
+        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
+
     */
 
 
     private fun Setpopup() {
+
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
@@ -56,6 +60,7 @@ class Exercise : AppCompatActivity() {
             })
         builder.show()
     }
+
 
     var interNum = 3
 
@@ -153,14 +158,14 @@ class Exercise : AppCompatActivity() {
 
                 "exercise" -> doSomething()
 
-
                 // RM setting
                 "rm" -> doRMSomething()
 
                 // Rmpopup()
 
                 // Initial setting
-                else -> {
+                else->{
+
                     Setpopup()
                 }
             }
@@ -456,6 +461,7 @@ class Exercise : AppCompatActivity() {
 
             return null
         }
+
     }
 
     private fun doRMSomething() {
@@ -463,6 +469,7 @@ class Exercise : AppCompatActivity() {
         val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("rmweight", weight)
         startActivity(nextIntent)
+
     }
 
 }

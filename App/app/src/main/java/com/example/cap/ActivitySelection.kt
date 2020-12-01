@@ -1,7 +1,6 @@
 package com.example.cap
 
 import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -46,11 +45,14 @@ class ActivitySelection : AppCompatActivity() {
         val RM : Button = findViewById(R.id.RM)
         RM.setOnClickListener {
             val nextIntent = Intent(this, RmWeightInput::class.java)
+            nextIntent.putExtra("activity", "rm")
             startActivity(nextIntent)
         }
         val Exercise : Button = findViewById(R.id.Exercise)
         Exercise.setOnClickListener {
-            val nextIntent = Intent(this, ExerciseWeightInput::class.java)
+//            val nextIntent = Intent(this, ExerciseWeightInput::class.java)
+            val nextIntent = Intent(this, RmWeightInput::class.java)
+            nextIntent.putExtra("activity", "exercise")
             startActivity(nextIntent)
         }
     }

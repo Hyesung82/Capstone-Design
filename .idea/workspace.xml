@@ -8,35 +8,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00306bea-7d91-47cf-98df-03b1ba1f0cec" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity1.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity3.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity4.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity5.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity6.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity7.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity8.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity9.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity8.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity9.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/SecondActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/Activity2.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/app/src/main/res/layout/second_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/activity2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/App/local.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MachineLearning/openpose_squat.py" beforeDir="false" afterPath="$PROJECT_DIR$/MachineLearning/openpose_squat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/App/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/ActivitySelection.kt" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/ActivitySelection.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/RmWeightInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/java/com/example/cap/RmWeightInput.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App/app/src/main/res/layout/rm_weight_input.xml" beforeDir="false" afterPath="$PROJECT_DIR$/App/app/src/main/res/layout/rm_weight_input.xml" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1064741330">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -48,9 +49,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-10" />
+    <option name="width" value="980" />
+    <option name="height" value="1040" />
+  </component>
   <component name="ProjectId" id="1kpvvkQvnfnTN2zx686bD8yefd2" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+    </panes>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -73,7 +88,19 @@
       <recent name="C:\Users\Public\projects\Capstone-Design\MachineLearning\res" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.OpenPoseSide">
     <configuration name="OpenPoseSide" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Capstone-Design" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -87,27 +114,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MachineLearning/OpenPoseSide" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="OpenPoseTestSingle" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Capstone-Design" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MachineLearning" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MachineLearning/OpenPoseTestSingle.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -137,6 +143,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="OpenPoseTestSingle" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Capstone-Design" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/MachineLearning" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MachineLearning/OpenPoseTestSingle.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="openpose_squat" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Capstone-Design" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -158,6 +185,12 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.OpenPoseSide" />
+      <item itemvalue="Python.OpenPoseTest" />
+      <item itemvalue="Python.OpenPoseTestSingle" />
+      <item itemvalue="Python.openpose_squat" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -172,17 +205,48 @@
     </task>
     <servers />
   </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info id="Favorites" side_tool="true" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="WindowStateProjectService">
     <state x="121" y="0" key="#Project_Structure" timestamp="1606410602822">
