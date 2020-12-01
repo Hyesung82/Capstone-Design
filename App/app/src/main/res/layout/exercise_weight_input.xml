@@ -28,7 +28,8 @@
         android:layout_marginRight="80dp">
 
         <EditText
-            android:id="@+id/etRmWeight"
+
+            android:id="@+id/etWeight"
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:ems="10"
