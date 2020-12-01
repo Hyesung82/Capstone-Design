@@ -45,14 +45,18 @@
         <FrameLayout
             android:id="@+id/camera_preview"
             android:layout_width="match_parent"
-            android:layout_height="300dp">
+            android:paddingLeft="100dp"
+            android:paddingRight="100dp"
+            android:layout_height="300dp"
+            android:layout_weight="4">
 
         </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/iv_picture1"
@@ -101,12 +105,15 @@
             android:id="@+id/button_capture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
             android:text="운동 시작" />
 
         <Button
             android:id="@+id/button_skip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="운동 완료" />
 
     </LinearLayout>
