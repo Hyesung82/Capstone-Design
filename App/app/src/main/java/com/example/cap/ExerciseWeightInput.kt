@@ -5,13 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseWeightInput : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity6)
+        setContentView(R.layout.exercise_weight_input)
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {
-            val nextIntent = Intent(this, ExampleActivity::class.java)
+            val nextIntent = Intent(this, Exercise::class.java)
+            nextIntent.putExtra("activity", "exercise")
             startActivity(nextIntent)
         }
     }

@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="250dp"
-    tools:context=".ExerciseActivity">
+    tools:context=".RmResult">
 
     <TextView
         android:id="@+id/textView2"

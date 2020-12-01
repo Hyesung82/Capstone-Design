@@ -5,13 +5,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class OKActivity : AppCompatActivity() {
+class SettingComplete : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity4)
+        setContentView(R.layout.setting_complete)
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {
-            val nextIntent = Intent(this, ExampleActivity::class.java)
+            val nextIntent = Intent(this, ActivitySelection::class.java)
             startActivity(nextIntent)
         }
     }

@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="300dp"
-    tools:context=".RMActivity">
+    tools:context=".ExerciseWeightInput">
 
     <TextView
         android:id="@+id/textView2"
@@ -17,8 +17,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:textSize="18dp"
-        android:text="충분히 무겁다 생각하는 무게를 입력해주세요." />
+        android:textSize="25sp"
+        android:text="운동할 무게를 입력해주세요." />
 
     <LinearLayout
         android:layout_width="wrap_content"

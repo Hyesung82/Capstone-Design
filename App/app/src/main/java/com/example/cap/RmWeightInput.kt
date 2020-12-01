@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 
-class RMActivity : AppCompatActivity() {
+class RmWeightInput : AppCompatActivity() {
     private lateinit var handler: Handler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity5)
+        setContentView(R.layout.rm_weight_input)
         handler= Handler()
         handler.postDelayed({
             doSomething()
