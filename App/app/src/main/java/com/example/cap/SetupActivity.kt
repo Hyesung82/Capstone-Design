@@ -1,4 +1,5 @@
 package com.example.cap
+
 import android.Manifest.permission.*
 import android.content.Context
 import android.content.pm.PackageManager
@@ -6,7 +7,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.hardware.Camera
-import android.media.ExifInterface
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -22,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import com.google.android.material.datepicker.MaterialTextInputPicker
 import java.io.*
 import java.net.URL
 import android.content.Intent as Intent1
@@ -35,7 +34,7 @@ class SetupActivity : AppCompatActivity() {
     lateinit var ivPicture2: ImageView
     lateinit var ivPicture3: ImageView
 
-    private lateinit var ivPictures: Array<ImageView>
+    lateinit var ivPictures: Array<ImageView>
 
     lateinit var curFileName: String
 
@@ -86,6 +85,8 @@ class SetupActivity : AppCompatActivity() {
 
         mContext = this.applicationContext
 
+
+        // 앱의 메인액티비티에서 체크하도록 변경할 것
         if(!checkCameraHardware(this.applicationContext)) {
             Log.d("TAG", "No CameraHardware")
         }
