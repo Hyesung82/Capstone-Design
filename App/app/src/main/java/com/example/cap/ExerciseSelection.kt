@@ -13,12 +13,27 @@ class ExerciseSelection : AppCompatActivity() {
         latpull.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
             nextIntent.putExtra("exercise", "랫풀다운")
+            nextIntent.putExtra("msg",latpull.text.toString())
             startActivity(nextIntent)
         }
         val bench : Button = findViewById(R.id.Bench)
         bench.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
+
             nextIntent.putExtra("exercise", "벤치프레스")
+            nextIntent.putExtra("msg",bench.text.toString())
+            startActivity(nextIntent)
+        }
+        val squat : Button = findViewById(R.id.Squat)
+        squat.setOnClickListener {
+            val nextIntent = Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("msg",squat.text.toString())
+            startActivity(nextIntent)
+        }
+        val deadlift : Button = findViewById(R.id.Deadlift)
+        deadlift.setOnClickListener {
+            val nextIntent = Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("msg",deadlift.text.toString())
             startActivity(nextIntent)
         }
     }
