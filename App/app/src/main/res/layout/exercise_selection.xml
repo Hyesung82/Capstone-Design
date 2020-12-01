@@ -40,7 +40,7 @@
         android:text="벤치프레스"
         android:textSize="20sp" />
     <Button
-        android:id="@+id/squat"
+        android:id="@+id/Squat"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
@@ -50,7 +50,7 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/deadlift"
+        android:id="@+id/Deadlift"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:layout_gravity="center"

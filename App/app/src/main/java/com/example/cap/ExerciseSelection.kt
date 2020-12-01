@@ -12,11 +12,13 @@ class ExerciseSelection : AppCompatActivity() {
         val latpull : Button = findViewById(R.id.Latpull)
         latpull.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("exercise", "랫풀다운")
             startActivity(nextIntent)
         }
         val bench : Button = findViewById(R.id.Bench)
         bench.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("exercise", "벤치프레스")
             startActivity(nextIntent)
         }
     }

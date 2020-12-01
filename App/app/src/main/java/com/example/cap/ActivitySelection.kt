@@ -5,10 +5,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.MediaController
-import android.widget.Toast
-import android.widget.VideoView
+import android.widget.*
 
 class ActivitySelection : AppCompatActivity() {
     lateinit var videoView: VideoView
@@ -34,6 +31,11 @@ class ActivitySelection : AppCompatActivity() {
             false
         }
 
+
+        val select : TextView = findViewById(R.id.tvExercise)
+        if(intent.hasExtra("exercise")){
+            select.text = " ${intent.getStringExtra("exercise")} "
+        }
 
         val Set : Button = findViewById(R.id.Set)
         Set.setOnClickListener {
