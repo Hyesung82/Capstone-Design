@@ -22,15 +22,6 @@
 
     <TextView
 
-        android:id="@+id/rmtext"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_marginBottom="10dp"
-        android:textSize="25dp"
-        android:text="결과" />
-
         android:id="@+id/tvRmResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

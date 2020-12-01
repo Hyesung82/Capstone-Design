@@ -35,19 +35,19 @@ class Exercise : AppCompatActivity() {
     }
 
 
-    /* private fun Rmpopup() {
-=======
+     private fun Rmpopup() {
+
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-                startActivity(nextIntent)
+            startActivity(Intent1(this, RmResult::class.java))
             })
         builder.show()
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 
-    */
+
 
 
     private fun Setpopup() {
@@ -159,9 +159,7 @@ class Exercise : AppCompatActivity() {
                 "exercise" -> doSomething()
 
                 // RM setting
-                "rm" -> doRMSomething()
-
-                // Rmpopup()
+                "rm" ->  Rmpopup()
 
                 // Initial setting
                 else->{
@@ -464,13 +462,7 @@ class Exercise : AppCompatActivity() {
 
     }
 
-    private fun doRMSomething() {
-        val nextIntent = android.content.Intent(this, RmResult::class.java)
-        val weight = intent.extras!!.getInt("weight")
-        nextIntent.putExtra("rmweight", weight)
-        startActivity(nextIntent)
 
-    }
 
 }
 

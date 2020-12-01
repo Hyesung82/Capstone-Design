@@ -35,7 +35,7 @@
             android:ems="10"
             android:layout_marginRight="15dp"
             android:inputType="number"
-            android:text="무게 입력"
+            android:hint="무게 입력"
             android:textAlignment="center"
             android:gravity="center_horizontal" />
 
