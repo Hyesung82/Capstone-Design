@@ -20,6 +20,15 @@
         android:textSize="25dp"
         android:text="1RM 결과" />
 
+    <TextView
+        android:id="@+id/tvRmResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="___kg"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
     <Button
         android:id="@+id/OK"
         android:layout_width="229dp"
