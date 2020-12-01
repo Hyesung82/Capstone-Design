@@ -81,21 +81,32 @@ class SetupActivity : AppCompatActivity() {
         setContentView(R.layout.activity3)
 
         var intent = getIntent()
-
-
         var activity = intent.extras?.getString("activity")
-        if (activity.equals("rm")) {
-            val tvIterNum: TextView = findViewById(R.id.tvIterNum)
-            tvIterNum.text = "충분히 무겁다고 생각하는 무게를 7번 반복해주세요!"
-
-            activityType = 7
+        when(activity) {
+            "exercise" -> {
+                activityType = 1
+                val tvIterNum: TextView = findViewById(R.id.tvIterNum)
+                tvIterNum.text = "동작을 수행해주세요"
+            }
+            "rm" -> {
+                activityType = 7
+                val tvIterNum: TextView = findViewById(R.id.tvIterNum)
+                tvIterNum.text = "충분히 무겁다고 생각하는 무게를 7번 반복해주세요!"
+            }
+            else -> {
+                activityType = 3
+            }
         }
 
 
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener{
-            startActivity(Intent1(this, OKActivity::class.java))
+            if (activityType == 1) {
+                startActivity(android.content.Intent(this, ExerciseStart::class.java))
+            } else {
+                startActivity(Intent1(this, OKActivity::class.java))
+            }
         }
 
         mContext = this.applicationContext
@@ -111,16 +122,21 @@ class SetupActivity : AppCompatActivity() {
         ivPicture2 = findViewById(R.id.iv_picture2)
         ivPicture3 = findViewById(R.id.iv_picture3)
 
-        ivPictures = if (activityType == 7) {
-            ivPicture4 = findViewById(R.id.iv_picture4)
-            ivPicture5 = findViewById(R.id.iv_picture5)
-            ivPicture6 = findViewById(R.id.iv_picture6)
-            ivPicture7 = findViewById(R.id.iv_picture7)
-            arrayOf(ivPicture1, ivPicture2, ivPicture3,
-                    ivPicture4, ivPicture5, ivPicture6, ivPicture7)
-        } else {
-            arrayOf(ivPicture1, ivPicture2, ivPicture3)
+        ivPictures = when(activityType) {
+            7 -> {
+                ivPicture4 = findViewById(R.id.iv_picture4)
+                ivPicture5 = findViewById(R.id.iv_picture5)
+                ivPicture6 = findViewById(R.id.iv_picture6)
+                ivPicture7 = findViewById(R.id.iv_picture7)
+                arrayOf(ivPicture1, ivPicture2, ivPicture3,
+                        ivPicture4, ivPicture5, ivPicture6, ivPicture7)
+            }
+            3 -> {
+                arrayOf(ivPicture1, ivPicture2, ivPicture3)
+            }
+            else -> emptyArray()
         }
+
 
 
         val captureButton: Button = findViewById(R.id.button_capture)
@@ -144,6 +160,7 @@ class SetupActivity : AppCompatActivity() {
             // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
             // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
 
+            // activityType = 1인 경우, InputWeightActivity.kt에서 따로 값을 받을 것
             for (index in 0 until activityType) {
                 shootAndStore(index)
             }

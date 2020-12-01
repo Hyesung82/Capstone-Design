@@ -30,7 +30,7 @@
         <activity android:name=".OKActivity" />
         <activity android:name=".RMActivity" />
         <activity android:name=".ExerciseActivity" />
-        <activity android:name=".ExerciseResultActivity" />
+        <activity android:name=".InputWeightActivity" />
         <activity android:name=".MeasureRMActivity" />
         <activity android:name=".RMResultActivity" />
 

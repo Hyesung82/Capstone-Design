@@ -22,7 +22,7 @@ class ExampleActivity : AppCompatActivity() {
         }
         val Exercise : Button = findViewById(R.id.Exercise)
         Exercise.setOnClickListener {
-            val nextIntent = Intent(this, ExerciseResultActivity::class.java)
+            val nextIntent = Intent(this, InputWeightActivity::class.java)
             startActivity(nextIntent)
         }
     }
