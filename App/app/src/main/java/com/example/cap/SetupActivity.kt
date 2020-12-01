@@ -2,7 +2,11 @@ package com.example.cap
 import android.Manifest.permission.*
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.hardware.Camera
+import android.media.ExifInterface
 import android.net.Uri
 import android.os.AsyncTask
 import android.os.Bundle
@@ -10,7 +14,6 @@ import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
-import android.view.SurfaceView
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -19,18 +22,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-import java.io.IOException
+import com.google.android.material.datepicker.MaterialTextInputPicker
+import java.io.*
 import java.net.URL
 import android.content.Intent as Intent1
 
 class SetupActivity : AppCompatActivity() {
     var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
-
-    lateinit var surfaceView: SurfaceView
 
     lateinit var ivPicture1: ImageView
     lateinit var ivPicture2: ImageView
@@ -50,9 +49,22 @@ class SetupActivity : AppCompatActivity() {
             return@PictureCallback
         }
 
+
+        // 사진 회전
+        var storedBitmap = BitmapFactory.decodeByteArray(data, 0, data.size, null)
+        var mat = Matrix()
+        mat.postRotate(90F)
+        storedBitmap = Bitmap.createBitmap(storedBitmap, 0, 0, storedBitmap.width, storedBitmap.height, mat, true)
+        var bos = ByteArrayOutputStream()
+        storedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+        var bitmapData = bos.toByteArray()
+        storedBitmap.recycle()
+
+
         try {
             val fos = FileOutputStream(pictureFile)
-            fos.write(data)
+//            fos.write(data)
+            fos.write(bitmapData)
             fos.close()
         } catch (e: FileNotFoundException) {
             Log.d("TAG", "File not found: ${e.message}")
@@ -242,6 +254,7 @@ class SetupActivity : AppCompatActivity() {
 //            var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
 //            Log.d("mediafile uri", uri.toString())
 
+            // curFileName has not been initialized
             Log.d("current file name", curFileName)
             ivPictures[num].setImageURI(curFileName.toUri())
 
