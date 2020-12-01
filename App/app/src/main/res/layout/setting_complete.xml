@@ -8,7 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="300dp"
-    tools:context=".OKActivity">
+    tools:context=".SettingComplete">
 
     <TextView
         android:id="@+id/textView2"

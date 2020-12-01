@@ -24,7 +24,7 @@ import java.io.*
 import java.net.URL
 import android.content.Intent as Intent1
 
-class SetupActivity : AppCompatActivity() {
+class Exercise : AppCompatActivity() {
     var activityType = 3
 
     var mCamera: Camera? = null
@@ -78,7 +78,7 @@ class SetupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity3)
+        setContentView(R.layout.exercise)
 
         var intent = getIntent()
         var activity = intent.extras?.getString("activity")
@@ -102,10 +102,15 @@ class SetupActivity : AppCompatActivity() {
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener{
-            if (activityType == 1) {
-                startActivity(android.content.Intent(this, ExerciseStart::class.java))
-            } else {
-                startActivity(Intent1(this, OKActivity::class.java))
+            when (activityType) {
+                // Exercise
+                1 -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
+                // RM setting
+                7 -> startActivity(Intent1(this, RmResult::class.java))
+                // Initial setting
+                else -> {
+                    startActivity(Intent1(this, SettingComplete::class.java))
+                }
             }
         }
 
@@ -392,7 +397,7 @@ class SetupActivity : AppCompatActivity() {
         }
 
         override fun onPostExecute(result: Long?) {
-            startActivity(Intent1(mContext, OKActivity::class.java))
+            startActivity(Intent1(mContext, SettingComplete::class.java))
         }
     }
 }
