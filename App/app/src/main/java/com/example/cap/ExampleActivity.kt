@@ -16,7 +16,8 @@ class ExampleActivity : AppCompatActivity() {
         }
         val RM : Button = findViewById(R.id.RM)
         RM.setOnClickListener {
-            val nextIntent = Intent(this, RMActivity::class.java)
+            val nextIntent = Intent(this, SetupActivity::class.java)
+            nextIntent.putExtra("activity", "rm")
             startActivity(nextIntent)
         }
         val Exercise : Button = findViewById(R.id.Exercise)

@@ -15,6 +15,7 @@ class RMResultActivity : AppCompatActivity() {
         val tvIterNum: TextView = findViewById(R.id.tvIterNum)
         tvIterNum.setText("충분히 무겁다고 생각하는 무게를 7번 반복해주세요!")
 
+
         handler= Handler()
         handler.postDelayed({
             doSomething()
