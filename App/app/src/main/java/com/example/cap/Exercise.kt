@@ -3,6 +3,7 @@ package com.example.cap
 import android.Manifest.permission.*
 import android.content.Context
 import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -16,6 +17,7 @@ import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,13 +28,38 @@ import android.content.Intent as Intent1
 
 class Exercise : AppCompatActivity() {
     private fun doSomething() {
-        val nextIntent = android.content.Intent( this, ExerciseResult::class.java)
+        val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
         val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("resultweight", weight)
-        startActivity(nextIntent)
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("설정 완료")
+        builder.setPositiveButton(
+            "OK", { dialogInterface: DialogInterface?, i: Int ->
+                startActivity(nextIntent)
+            })
+        builder.show()
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 
+    private fun Rmpopup() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("설정 완료")
+        builder.setPositiveButton(
+            "OK", { dialogInterface: DialogInterface?, i: Int ->
+                startActivity(Intent1(this, RmResult::class.java))
+            })
+        builder.show()
+    }
+
+    private fun Setpopup(){
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("설정 완료")
+        builder.setPositiveButton(
+            "OK", { dialogInterface: DialogInterface?, i: Int ->
+                startActivity(Intent1(this, ActivitySelection::class.java))
+            })
+        builder.show()
+    }
     var interNum = 3
 
     var mCamera: Camera? = null
@@ -64,7 +91,15 @@ class Exercise : AppCompatActivity() {
         var storedBitmap = BitmapFactory.decodeByteArray(data, 0, data.size, null)
         var mat = Matrix()
         mat.postRotate(90F)
-        storedBitmap = Bitmap.createBitmap(storedBitmap, 0, 0, storedBitmap.width, storedBitmap.height, mat, true)
+        storedBitmap = Bitmap.createBitmap(
+            storedBitmap,
+            0,
+            0,
+            storedBitmap.width,
+            storedBitmap.height,
+            mat,
+            true
+        )
         var bos = ByteArrayOutputStream()
         storedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
         var bitmapData = bos.toByteArray()
@@ -90,7 +125,7 @@ class Exercise : AppCompatActivity() {
 
         var intent = getIntent()
         var activity = intent.extras?.getString("activity")
-        when(activity) {
+        when (activity) {
             "exercise" -> {
                 // interNum은 이전 액티비티에서 받아올 것
                 interNum = 1
@@ -114,19 +149,21 @@ class Exercise : AppCompatActivity() {
 
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
-        skipButton.setOnClickListener{
+        skipButton.setOnClickListener {
             when (activity) {
                 // Exercise
-               // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
-                "exercise" -> doSomething()
-
-
+                // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
+                "exercise" -> {
+                    doSomething()
+                }
 
                 // RM setting
-                "rm" -> startActivity(Intent1(this, RmResult::class.java))
+                "rm" -> {
+                    Rmpopup()
+                }
                 // Initial setting
-                else -> {
-                    startActivity(Intent1(this, SettingComplete::class.java))
+                else->{
+                    Setpopup()
                 }
             }
         }
@@ -136,7 +173,7 @@ class Exercise : AppCompatActivity() {
 
 
         // 앱의 메인액티비티에서 체크하도록 변경할 것
-        if(!checkCameraHardware(this.applicationContext)) {
+        if (!checkCameraHardware(this.applicationContext)) {
             Log.d(TAG, "No CameraHardware")
         }
         if (!checkPersmission()) requestPermission()
@@ -145,21 +182,22 @@ class Exercise : AppCompatActivity() {
         ivPicture2 = findViewById(R.id.iv_picture2)
         ivPicture3 = findViewById(R.id.iv_picture3)
 
-        ivPictures = when(activity) {
-             "rm" -> {
+        ivPictures = when (activity) {
+            "rm" -> {
                 ivPicture4 = findViewById(R.id.iv_picture4)
                 ivPicture5 = findViewById(R.id.iv_picture5)
                 ivPicture6 = findViewById(R.id.iv_picture6)
                 ivPicture7 = findViewById(R.id.iv_picture7)
-                arrayOf(ivPicture1, ivPicture2, ivPicture3,
-                        ivPicture4, ivPicture5, ivPicture6, ivPicture7)
+                arrayOf(
+                    ivPicture1, ivPicture2, ivPicture3,
+                    ivPicture4, ivPicture5, ivPicture6, ivPicture7
+                )
             }
             "init" -> {
                 arrayOf(ivPicture1, ivPicture2, ivPicture3)
             }
             else -> arrayOf(ivPicture1)
         }
-
 
 
         val captureButton: Button = findViewById(R.id.button_capture)
@@ -195,18 +233,26 @@ class Exercise : AppCompatActivity() {
 
     private val REQUEST_IMAGE_CAPTURE = 1
     private fun requestPermission() {
-        ActivityCompat.requestPermissions(this,
-            arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA), REQUEST_IMAGE_CAPTURE)
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, CAMERA), REQUEST_IMAGE_CAPTURE
+        )
     }
 
     // 카메라 권한 체크
     private fun checkPersmission(): Boolean {
-        return (ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+        return (ContextCompat.checkSelfPermission(
+            this,
+            android.Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.READ_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) == PackageManager.PERMISSION_GRANTED)
     }
 
 
@@ -220,8 +266,8 @@ class Exercise : AppCompatActivity() {
         if (requestCode == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG, "Permission: " + permissions[0] + " was " + grantResults[0])
             Log.d("권한 요청 결과", "권한 얻음")
-        }else{
-            Log.d(TAG,"Permission: " + permissions[0] + "was " + grantResults[0])
+        } else {
+            Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0])
         }
     }
 
@@ -303,12 +349,12 @@ class Exercise : AppCompatActivity() {
         handler1.postDelayed({
             pictureNum++
             // 3초 후 다시 찰칵
-            Toast.makeText(mContext,"setup${num+1}: 지금 찰칵!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(mContext, "setup${num + 1}: 지금 찰칵!", Toast.LENGTH_SHORT).show()
 
             // get an image from the camera
             mCamera?.takePicture(null, null, mPicture)
 
-        },3000 + millis * 3000)
+        }, 3000 + millis * 3000)
 
         handler2.postDelayed({
             // 태블릿에서만 파일이 저장됨ㅠㅠ
@@ -337,11 +383,11 @@ class Exercise : AppCompatActivity() {
                 val preview1: FrameLayout = findViewById(R.id.camera_preview)
                 preview1.addView(it)
             }
-        },4000 + millis * 3000)
+        }, 4000 + millis * 3000)
     }
 
 
-    inner class TaskTakePicture1: AsyncTask<URL, Integer, Long>() {
+    inner class TaskTakePicture1 : AsyncTask<URL, Integer, Long>() {
         override fun doInBackground(vararg p0: URL?): Long? {
             lateinit var uri: Uri
 
@@ -366,23 +412,23 @@ class Exercise : AppCompatActivity() {
         }
     }
 
-    inner class TaskTakePicture2: AsyncTask<URL, Integer, Long>() {
+    inner class TaskTakePicture2 : AsyncTask<URL, Integer, Long>() {
         override fun doInBackground(vararg p0: URL?): Long? {
             lateinit var uri: Uri
 
-                pictureNum++
-                // 3초 후 다시 찰칵
+            pictureNum++
+            // 3초 후 다시 찰칵
 //                Toast.makeText(mContext,"setup2: 지금 찰칵!", Toast.LENGTH_SHORT).show()
 
-                // get an image from the camera
-                mCamera?.takePicture(null, null, mPicture)
+            // get an image from the camera
+            mCamera?.takePicture(null, null, mPicture)
 
 
-                uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
+            uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
+            Log.d("mediafile uri", uri.toString())
+            Log.d("current file name", curFileName)
 
-                ivPictures[1].setImageURI(uri)
+            ivPictures[1].setImageURI(uri)
 
             return null
         }
@@ -393,32 +439,25 @@ class Exercise : AppCompatActivity() {
         }
     }
 
-    inner class TaskTakePicture3: AsyncTask<URL, Integer, Long>() {
+    inner class TaskTakePicture3 : AsyncTask<URL, Integer, Long>() {
         override fun doInBackground(vararg p0: URL?): Long? {
 
             pictureNum++
-                // 3초 후 다시 찰칵
+            // 3초 후 다시 찰칵
 //                Toast.makeText(mContext,"setup3: 지금 찰칵!", Toast.LENGTH_SHORT).show()
 
-                // get an image from the camera
-                mCamera?.takePicture(null, null, mPicture)
+            // get an image from the camera
+            mCamera?.takePicture(null, null, mPicture)
 
 
             var uri: Uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
-                Log.d("mediafile uri", uri.toString())
-                Log.d("current file name", curFileName)
+            Log.d("mediafile uri", uri.toString())
+            Log.d("current file name", curFileName)
 
-                ivPictures[2].setImageURI(uri)
+            ivPictures[2].setImageURI(uri)
 
             return null
         }
-
-        override fun onPostExecute(result: Long?) {
-            startActivity(Intent1(mContext, SettingComplete::class.java))
-        }
     }
-
-
-
 }
 
