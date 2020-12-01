@@ -16,7 +16,9 @@ class RmWeightInput : AppCompatActivity() {
     }
 
     private fun doSomething() {
-        startActivity(Intent(this, RMResultActivity::class.java))
+        val nextIntent = Intent(this, Exercise::class.java)
+        nextIntent.putExtra("activity", "rm")
+        startActivity(nextIntent)
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 }

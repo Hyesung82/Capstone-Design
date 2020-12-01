@@ -31,7 +31,6 @@
         <activity android:name=".RmWeightInput" />
         <activity android:name=".RmResult" />
         <activity android:name=".ExerciseWeightInput" />
-        <activity android:name=".RMResultActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
