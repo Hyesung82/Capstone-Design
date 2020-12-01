@@ -25,6 +25,14 @@ import java.net.URL
 import android.content.Intent as Intent1
 
 class Exercise : AppCompatActivity() {
+    private fun doSomething() {
+        val nextIntent = android.content.Intent( this, ExerciseResult::class.java)
+        val weight = intent.extras!!.getInt("weight")
+        nextIntent.putExtra("resultweight", weight)
+        startActivity(nextIntent)
+        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
+    }
+
     var interNum = 3
 
     var mCamera: Camera? = null
@@ -109,7 +117,11 @@ class Exercise : AppCompatActivity() {
         skipButton.setOnClickListener{
             when (activity) {
                 // Exercise
-                "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
+               // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
+                "exercise" -> doSomething()
+
+
+
                 // RM setting
                 "rm" -> startActivity(Intent1(this, RmResult::class.java))
                 // Initial setting
@@ -118,6 +130,7 @@ class Exercise : AppCompatActivity() {
                 }
             }
         }
+
 
         mContext = this.applicationContext
 
@@ -404,5 +417,8 @@ class Exercise : AppCompatActivity() {
             startActivity(Intent1(mContext, SettingComplete::class.java))
         }
     }
+
+
+
 }
 
