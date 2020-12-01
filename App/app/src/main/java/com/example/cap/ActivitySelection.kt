@@ -38,12 +38,12 @@ class ActivitySelection : AppCompatActivity() {
         val Set : Button = findViewById(R.id.Set)
         Set.setOnClickListener {
             val nextIntent = Intent(this, Exercise::class.java)
+            nextIntent.putExtra("activity", "init")
             startActivity(nextIntent)
         }
         val RM : Button = findViewById(R.id.RM)
         RM.setOnClickListener {
             val nextIntent = Intent(this, RmWeightInput::class.java)
-            nextIntent.putExtra("activity", "rm")
             startActivity(nextIntent)
         }
         val Exercise : Button = findViewById(R.id.Exercise)

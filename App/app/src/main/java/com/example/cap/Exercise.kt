@@ -25,7 +25,7 @@ import java.net.URL
 import android.content.Intent as Intent1
 
 class Exercise : AppCompatActivity() {
-    var activityType = 3
+    var interNum = 3
 
     var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
@@ -84,17 +84,22 @@ class Exercise : AppCompatActivity() {
         var activity = intent.extras?.getString("activity")
         when(activity) {
             "exercise" -> {
-                activityType = 1
+                // interNum은 이전 액티비티에서 받아올 것
+                interNum = 1
                 val tvIterNum: TextView = findViewById(R.id.tvIterNum)
                 tvIterNum.text = "동작을 수행해주세요"
             }
             "rm" -> {
-                activityType = 7
+                interNum = 7
+
+                // 개인 RM과 무게에 따라 적당한 횟수(세트 수) 계산
+                val weight = intent.extras!!.getInt("weight")
+
                 val tvIterNum: TextView = findViewById(R.id.tvIterNum)
-                tvIterNum.text = "충분히 무겁다고 생각하는 무게를 7번 반복해주세요!"
+                tvIterNum.text = "${weight}kg을 7번 반복해주세요!"
             }
             else -> {
-                activityType = 3
+                interNum = 3
             }
         }
 
@@ -102,11 +107,11 @@ class Exercise : AppCompatActivity() {
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener{
-            when (activityType) {
+            when (activity) {
                 // Exercise
-                1 -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
+                "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
                 // RM setting
-                7 -> startActivity(Intent1(this, RmResult::class.java))
+                "rm" -> startActivity(Intent1(this, RmResult::class.java))
                 // Initial setting
                 else -> {
                     startActivity(Intent1(this, SettingComplete::class.java))
@@ -127,8 +132,8 @@ class Exercise : AppCompatActivity() {
         ivPicture2 = findViewById(R.id.iv_picture2)
         ivPicture3 = findViewById(R.id.iv_picture3)
 
-        ivPictures = when(activityType) {
-            7 -> {
+        ivPictures = when(activity) {
+             "rm" -> {
                 ivPicture4 = findViewById(R.id.iv_picture4)
                 ivPicture5 = findViewById(R.id.iv_picture5)
                 ivPicture6 = findViewById(R.id.iv_picture6)
@@ -136,10 +141,10 @@ class Exercise : AppCompatActivity() {
                 arrayOf(ivPicture1, ivPicture2, ivPicture3,
                         ivPicture4, ivPicture5, ivPicture6, ivPicture7)
             }
-            3 -> {
+            "init" -> {
                 arrayOf(ivPicture1, ivPicture2, ivPicture3)
             }
-            else -> emptyArray()
+            else -> arrayOf(ivPicture1)
         }
 
 
@@ -165,8 +170,7 @@ class Exercise : AppCompatActivity() {
             // 지정해준 이름과 실제로 저장되는 이름이 가끔씩 다름(1초 차이) -> timestamp X,
             // 이름이 같더라도 사진이 저장되는데 시간이 걸려서 사진을 못 찾음 -> handler
 
-            // activityType = 1인 경우, InputWeightActivity.kt에서 따로 값을 받을 것
-            for (index in 0 until activityType) {
+            for (index in 0 until interNum) {
                 shootAndStore(index)
             }
 
