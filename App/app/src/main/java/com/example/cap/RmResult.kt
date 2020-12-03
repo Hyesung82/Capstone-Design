@@ -49,12 +49,17 @@ class RmResult : AppCompatActivity() {
             }
         })
 
+        // 서버가 안 될 때, 위 코드 대신 아래 코드가 역할을 함
+        val rmValue = intent.extras!!.getDouble("rmValue")
+        tvRmResult.text = "${rmValue} kg"
+
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
             startActivity(nextIntent)
         }
     }
+
 
     private fun parseJson(json: String): Int {
         json.trimIndent()

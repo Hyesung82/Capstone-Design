@@ -19,19 +19,24 @@
         tools:text=" 랫풀다운 "
         android:textColor="#FFFFFF" />
 
-    <VideoView
-        android:id="@+id/videoView"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center"
-        />
+        android:layout_height="wrap_content"
+        android:text="다음과 같이 센서를 부착해주세요." />
 
     <ImageView
         android:id="@+id/ivSensor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center" />
 
     <Button
         android:id="@+id/Set"
@@ -43,9 +48,7 @@
         android:text="기본설정"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp"
-
-        />
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/RM"
@@ -58,6 +61,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="20sp" />
+
     <Button
         android:id="@+id/Exercise"
         android:layout_width="180dp"
@@ -68,6 +72,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
 </LinearLayout>

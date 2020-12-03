@@ -60,7 +60,7 @@
         android:layout_marginBottom="50sp">
 
         <TextView
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/tvTimes"
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -92,7 +92,7 @@
         android:layout_marginLeft="120dp">
 
         <TextView
-            android:id="@+id/editTextNumber3"
+            android:id="@+id/tvSet"
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:ems="10"

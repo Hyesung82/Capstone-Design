@@ -84,6 +84,8 @@ class WeightInput : AppCompatActivity() {
         comment = apiService.patch_Test(1, "json", weight)
         comment.enqueue(object : Callback<ResponseBody> {
 
+            // 전송 실패ㅠㅠ
+            // 서버 코드 되돌려야 함
             override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
                 Log.e("D_Test", "2차")
                 try {

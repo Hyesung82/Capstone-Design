@@ -32,8 +32,14 @@ class ActivitySelection : AppCompatActivity() {
 
 
         val select : TextView = findViewById(R.id.tvExercise)
+        val ivSensor: ImageView = findViewById(R.id.ivSensor)
         if(intent.hasExtra("exercise")){
-            select.text = " ${intent.getStringExtra("exercise")} "
+            val curExercise = intent.getStringExtra("exercise")
+            select.text = " ${curExercise} "
+            when(curExercise) {
+                "랫풀다운" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+                else -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+            }
         }
 
         val Set : Button = findViewById(R.id.Set)

@@ -24,30 +24,42 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import java.io.*
 import java.net.URL
+import kotlin.properties.Delegates
 import android.content.Intent as Intent1
 
 class Exercise : AppCompatActivity() {
-    private fun doSomething() {
+    private fun exerciseOK() {
+        // 추후에 입력 받는 식으로 변경할 것
+        val numTimes = 3
+        val numSet = 1
+
         val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
         val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("resultweight", weight)
+        nextIntent.putExtra("resultTimes", numTimes)
+        nextIntent.putExtra("resultSet", numSet)
+
         val builder = AlertDialog.Builder(this)
-        builder.setMessage("설정 완료")
+        builder.setMessage("운동 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
                 startActivity(nextIntent)
             })
         builder.show()
-        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 
     private fun Rmpopup() {
+        // Calculate RM
+        var rmValue = weight + weight * 0.025 * 7
+
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
-            "OK", { dialogInterface: DialogInterface?, i: Int ->
-                startActivity(Intent1(this, RmResult::class.java))
-            })
+            "OK") { dialogInterface: DialogInterface?, i: Int ->
+                val nextIntent = android.content.Intent(this, RmResult::class.java)
+            nextIntent.putExtra("rmValue", rmValue)
+                startActivity(nextIntent)
+        }
         builder.show()
     }
 
@@ -60,6 +72,10 @@ class Exercise : AppCompatActivity() {
             })
         builder.show()
     }
+
+
+    var weight by Delegates.notNull<Int>()
+
     var interNum = 3
 
     var mCamera: Camera? = null
@@ -136,7 +152,8 @@ class Exercise : AppCompatActivity() {
                 interNum = 7
 
                 // 개인 RM과 무게에 따라 적당한 횟수(세트 수) 계산
-                val weight = intent.extras!!.getInt("weight")
+//                val weight = intent.extras!!.getInt("weight")
+                weight = intent.extras!!.getInt("weight")
 
                 val tvIterNum: TextView = findViewById(R.id.tvIterNum)
                 tvIterNum.text = "${weight}kg을 7번 반복해주세요!"
@@ -154,7 +171,7 @@ class Exercise : AppCompatActivity() {
                 // Exercise
                 // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
                 "exercise" -> {
-                    doSomething()
+                    exerciseOK()
                 }
 
                 // RM setting
@@ -357,10 +374,7 @@ class Exercise : AppCompatActivity() {
         }, 3000 + millis * 3000)
 
         handler2.postDelayed({
-            // 태블릿에서만 파일이 저장됨ㅠㅠ
-            // 사진 촬영 후 프리뷰가 멈추는 이유는 아래 작업들 때문!
-            // 하지만 아래 작업들은 프리뷰 호출과 관련이 없음
-            // -> getOutputMediaFileUri를 확인해볼 것
+            // 태블릿에서 사진 촬영 후 프리뷰가 멈춤
 //            var uri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE)
 //            Log.d("mediafile uri", uri.toString())
 
