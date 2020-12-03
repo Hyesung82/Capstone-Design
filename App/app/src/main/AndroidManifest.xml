@@ -28,10 +28,8 @@
         <activity android:name=".ExerciseSelection" />
         <activity android:name=".ActivitySelection" />
         <activity android:name=".Exercise" />
-        <activity android:name=".SettingComplete" />
-        <activity android:name=".RmWeightInput" />
+        <activity android:name=".WeightInput" />
         <activity android:name=".RmResult" />
-        <activity android:name=".ExerciseWeightInput" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

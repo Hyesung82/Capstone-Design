@@ -18,7 +18,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    public static final String API_URL = "http://2df949ea1b05.ngrok.io/";
+    public static final String API_URL = "https://65ec86f5b4f8.ngrok.io";
 
     @GET("tests")
     Call<ResponseBody> get_Test(@Query("format") String json);

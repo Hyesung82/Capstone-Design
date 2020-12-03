@@ -27,6 +27,12 @@
         android:layout_gravity="center"
         />
 
+    <ImageView
+        android:id="@+id/ivSensor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
     <Button
         android:id="@+id/Set"
         android:layout_width="182dp"

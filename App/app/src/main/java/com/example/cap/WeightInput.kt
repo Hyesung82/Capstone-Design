@@ -16,7 +16,7 @@ import retrofit2.Retrofit
 import java.lang.Exception
 import kotlin.properties.Delegates
 
-class RmWeightInput : AppCompatActivity() {
+class WeightInput : AppCompatActivity() {
 
     internal lateinit var retrofit: Retrofit
     internal lateinit var apiService: ApiService
@@ -27,7 +27,7 @@ class RmWeightInput : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.rm_weight_input)
+        setContentView(R.layout.weight_input)
 
         retrofit = Retrofit.Builder().baseUrl(ApiService.API_URL).build()
         apiService = retrofit.create(ApiService::class.java)

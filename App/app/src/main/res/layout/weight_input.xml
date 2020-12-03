@@ -8,17 +8,17 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="300dp"
-    tools:context=".ExerciseWeightInput">
+    tools:context=".WeightInput">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvWeightInput"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:textSize="25sp"
-        android:text="운동할 무게를 입력해주세요." />
+        android:textSize="18dp"
+        android:text="충분히 무겁다 생각하는 무게를 입력해주세요." />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,25 +28,24 @@
         android:layout_marginRight="80dp">
 
         <EditText
-
-            android:id="@+id/etWeight"
+            android:id="@+id/etRmWeight"
             android:layout_width="119dp"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:layout_marginRight="15dp"
+            android:ems="10"
+            android:gravity="center_horizontal"
+            android:hint="무게 입력"
             android:inputType="number"
-            android:text="무게 입력"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+            android:textAlignment="center" />
 
         <Button
-            android:id="@+id/OK"
+            android:id="@+id/bRmWeight"
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:backgroundTint="@color/purple"
+            android:gravity="center_horizontal"
             android:text="OK"
             android:textSize="15sp"/>
     </LinearLayout>
-
 
 </LinearLayout>
