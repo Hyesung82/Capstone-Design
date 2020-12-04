@@ -61,6 +61,10 @@ class ActivitySelection : AppCompatActivity() {
             nextIntent.putExtra("activity", "exercise")
             startActivity(nextIntent)
         }
+
+        val intent = intent
+        val activity = intent.extras?.getString("activity")
+        Exercise.isEnabled = activity.equals("init") || activity.equals("rm")
     }
 
     override fun onPause() {

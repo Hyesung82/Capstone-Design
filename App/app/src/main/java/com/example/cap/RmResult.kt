@@ -56,6 +56,7 @@ class RmResult : AppCompatActivity() {
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {
             val nextIntent = Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("activity", "rm")
             startActivity(nextIntent)
         }
     }

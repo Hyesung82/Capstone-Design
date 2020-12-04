@@ -28,6 +28,8 @@ import kotlin.properties.Delegates
 import android.content.Intent as Intent1
 
 class Exercise : AppCompatActivity() {
+    lateinit var videoView: VideoView
+
     private fun exerciseOK() {
         // 추후에 입력 받는 식으로 변경할 것
         val numTimes = 3
@@ -50,6 +52,7 @@ class Exercise : AppCompatActivity() {
 
     private fun Rmpopup() {
         // Calculate RM
+        // 추후에 5kg 단위로 바꿀 것
         var rmValue = weight + weight * 0.025 * 7
 
         val builder = AlertDialog.Builder(this)
@@ -68,7 +71,9 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-                startActivity(Intent1(this, ActivitySelection::class.java))
+            val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
+            nextIntent.putExtra("activity", "init")
+            startActivity(nextIntent)
             })
         builder.show()
     }
@@ -139,14 +144,37 @@ class Exercise : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise)
 
+        videoView = findViewById(R.id.vvTest)
+        val videoUri = Uri.parse("android.resource://$packageName/${R.raw.vv_test}")
+        videoView.setMediaController(MediaController(this))
+        videoView.setVideoURI(videoUri)
+
+        videoView.requestFocus()
+        videoView.start()
+
+        videoView.setOnCompletionListener {
+            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
+        }
+        videoView.setOnErrorListener { mp, what, extra ->
+            Toast.makeText(applicationContext, "An error occured while playing video",
+                    Toast.LENGTH_LONG).show()
+            false
+        }
+
         var intent = getIntent()
         var activity = intent.extras?.getString("activity")
         when (activity) {
             "exercise" -> {
                 // interNum은 이전 액티비티에서 받아올 것
                 interNum = 1
+
+                weight = intent.extras!!.getInt("weight")
+
+                val rap = intent.extras?.getInt("rap")
+                val set = intent.extras?.getInt("set")
+
                 val tvIterNum: TextView = findViewById(R.id.tvIterNum)
-                tvIterNum.text = "동작을 수행해주세요"
+                tvIterNum.text = "${weight}kg ${rap}회 ${set}세트를 수행해주세요"
             }
             "rm" -> {
                 interNum = 7
@@ -219,19 +247,20 @@ class Exercise : AppCompatActivity() {
 
         val captureButton: Button = findViewById(R.id.button_capture)
 
+        // 테스트가 끝나면 반드시 되돌려 놓을 것
         // Create an instance of Camera
-        mCamera = getCameraInstance()
-
-        mPreview = mCamera?.let {
-            // Create our Preview view
-            CameraPreview(this, it)
-        }
-
-        // Set the Preview view as the content of our activity.
-        mPreview?.also {
-            val preview: FrameLayout = findViewById(R.id.camera_preview)
-            preview.addView(it)
-        }
+//        mCamera = getCameraInstance()
+//
+//        mPreview = mCamera?.let {
+//            // Create our Preview view
+//            CameraPreview(this, it)
+//        }
+//
+//        // Set the Preview view as the content of our activity.
+//        mPreview?.also {
+//            val preview: FrameLayout = findViewById(R.id.camera_preview)
+//            preview.addView(it)
+//        }
 
 
         captureButton.setOnClickListener {
@@ -303,10 +332,11 @@ class Exercise : AppCompatActivity() {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        releaseCamera() // release the camera immediately on pause event
-    }
+    // 테스트가 끝나면 반드시 되돌려놓을 것
+//    override fun onPause() {
+//        super.onPause()
+//        releaseCamera() // release the camera immediately on pause event
+//    }
 
     private fun releaseCamera() {
         mCamera?.release() // release the camera for other applications
@@ -398,6 +428,17 @@ class Exercise : AppCompatActivity() {
                 preview1.addView(it)
             }
         }, 4000 + millis * 3000)
+    }
+
+
+    override fun onPause() {
+        super.onPause()
+        if (videoView != null && videoView.isPlaying) videoView.pause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (videoView != null) videoView.stopPlayback()
     }
 
 
