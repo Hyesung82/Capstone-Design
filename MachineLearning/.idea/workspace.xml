@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1b1105b-0937-49c3-9286-efc70e44196a" name="Default Changelist" comment="" />
+    <list default="true" id="e1b1105b-0937-49c3-9286-efc70e44196a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/res/lat_pulldown_jb2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/lat_pulldown_jb3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/lat_pulldown_jb4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/6.5/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../App/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/Exercise.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/Exercise.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/ExerciseResult.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/ExerciseResult.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/WeightInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../App/app/src/main/java/com/example/cap/WeightInput.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/app/src/main/res/layout/exercise_result.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../App/app/src/main/res/layout/exercise_result.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App/app/src/main/res/layout/weight_input.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../App/app/src/main/res/layout/weight_input.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OpenPoseTestSingle.py" beforeDir="false" afterPath="$PROJECT_DIR$/OpenPoseTestSingle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/hello_django/capstone/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/hello_django/capstone/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/hello_django/capstone/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/hello_django/capstone/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/hello_django/capstone/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/hello_django/capstone/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/hello_django/capstone/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/hello_django/capstone/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Server/hello_django/hello_django/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/hello_django/hello_django/settings.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,27 +70,66 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="458166550">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="117" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="117" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/OpenPoseTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
+            <state relative-caret-position="149">
               <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1606281723892" expanded="true" signature="72:206" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/OpenPoseTestSingle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+            <state relative-caret-position="513">
+              <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/openpose_squat.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -88,6 +153,9 @@
       <replace>j</replace>
     </replaceStrings>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -97,10 +165,11 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
+    <option name="x" value="952" />
     <option name="width" value="977" />
     <option name="height" value="1038" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -110,12 +179,12 @@
         <subPane>
           <expand>
             <path>
-              <item name="CapstoneDesign" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CapstoneDesign" type="462c0819:PsiDirectoryNode" />
+              <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="CapstoneDesign" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CapstoneDesign" type="462c0819:PsiDirectoryNode" />
+              <item name="MachineLearning" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MachineLearning" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -126,14 +195,17 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Public\projects\Capstone-Design\MachineLearning\res" />
       <recent name="C:\Users\Public\CapstoneDesign\res" />
       <recent name="C:\Users\Public\CapstoneDesign" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Public\projects\Capstone-Design\MachineLearning\res" />
       <recent name="C:\Users\Public\CapstoneDesign\res" />
       <recent name="C:\Users\Public\CapstoneDesign" />
     </key>
@@ -193,13 +265,36 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="openpose_squat" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="CapstoneDesign" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/openpose_squat.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Python.OpenPoseTest" />
       <item itemvalue="Python.OpenPoseTestSingle" />
+      <item itemvalue="Python.openpose_squat" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.OpenPoseTestSingle" />
+        <item itemvalue="Python.openpose_squat" />
         <item itemvalue="Python.OpenPoseTest" />
       </list>
     </recent_temporary>
@@ -217,23 +312,32 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.122934565" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.122934565" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3319149" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33948863" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39914772" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32954547" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32998565" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32954547" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32954547" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -246,24 +350,30 @@
     <entry file="file://$PROJECT_DIR$/pose_deploy_linevec_faster_4_stages.prototxt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/lat-pulldown.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/OpenPoseTest.py">
+    <entry file="file://$PROJECT_DIR$/lat-pulldown.jpg" />
+    <entry file="file://$PROJECT_DIR$/openpose_squat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
+        <state>
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1606281723892" expanded="true" signature="72:206" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/OpenPoseTestSingle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="43" column="41" selection-start-line="43" selection-start-column="41" selection-end-line="43" selection-end-column="41" />
+        <state relative-caret-position="513">
+          <caret line="44" column="46" lean-forward="true" selection-start-line="44" selection-start-column="46" selection-end-line="44" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/OpenPoseTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="141" column="20" selection-start-line="141" selection-start-column="20" selection-end-line="141" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

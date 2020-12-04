@@ -41,7 +41,9 @@ weightsFile = "pose_iter_160000.caffemodel"
 net = cv2.dnn.readNetFromCaffe(protoFile, weightsFile)
 
 # 이미지 읽어오기
-image = cv2.imread("res/squat01.jpg")
+# image = cv2.imread("res/squat01.jpg")
+image = cv2.imread("res/lat_pulldown_jb6.jpg")
+# 2, 3
 
 # frame.shape = 불러온 이미지에서 height, width, color 받아옴
 imageHeight, imageWidth, _ = image.shape
@@ -128,6 +130,7 @@ if points[5] and points[6] and points[7]:
     print("왼쪽 팔꿈치: " + str(angle_LElbow))
 
 cv2.imshow("Output-Keypoints", imageCopy)
+# cv2.imwrite("res/jb_result2.jpg", imageCopy)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
