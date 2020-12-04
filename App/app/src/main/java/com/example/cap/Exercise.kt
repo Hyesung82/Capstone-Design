@@ -64,9 +64,14 @@ class Exercise : AppCompatActivity() {
                 startActivity(nextIntent)
         }
         builder.show()
+        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
 
-    private fun Setpopup(){
+
+
+
+    private fun Setpopup() {
+
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
@@ -203,11 +208,11 @@ class Exercise : AppCompatActivity() {
                 }
 
                 // RM setting
-                "rm" -> {
-                    Rmpopup()
-                }
+                "rm" ->  Rmpopup()
+
                 // Initial setting
                 else->{
+
                     Setpopup()
                 }
             }
@@ -513,6 +518,10 @@ class Exercise : AppCompatActivity() {
 
             return null
         }
+
     }
+
+
+
 }
 
