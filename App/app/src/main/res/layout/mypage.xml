@@ -6,180 +6,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F1F1"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-   <androidx.appcompat.widget.LinearLayoutCompat
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical">
+    android:background="#F9F1F1">
 
-
-<!--        <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="left">-->
-<!--            <ImageButton-->
-<!--                android:id="@+id/imageButton2"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="20dp"-->
-<!--                android:layout_marginLeft="20dp"-->
-<!--                android:layout_marginTop="20dp"-->
-<!--                android:adjustViewBounds="true"-->
-<!--                android:background="#00000000"-->
-<!--                android:maxWidth="40dp"-->
-<!--                android:maxHeight="40dp"-->
-<!--                android:scaleType="fitCenter"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:srcCompat="@drawable/left_arrow" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/textView8"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginStart="10dp"-->
-<!--                android:layout_marginLeft="10dp"-->
-<!--                android:layout_marginTop="25dp"-->
-<!--                android:text="Back"-->
-<!--                android:textSize="20dp"-->
-<!--                app:layout_constraintStart_toEndOf="@+id/imageButton2"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                app:srcCompat="@drawable/heart" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:orientation="vertical">
 
+    <!--        <androidx.appcompat.widget.LinearLayoutCompat-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_gravity="left">-->
+    <!--            <ImageButton-->
+    <!--                android:id="@+id/imageButton2"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="20dp"-->
+    <!--                android:layout_marginLeft="20dp"-->
+    <!--                android:layout_marginTop="20dp"-->
+    <!--                android:adjustViewBounds="true"-->
+    <!--                android:background="#00000000"-->
+    <!--                android:maxWidth="40dp"-->
+    <!--                android:maxHeight="40dp"-->
+    <!--                android:scaleType="fitCenter"-->
+    <!--                app:layout_constraintStart_toStartOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent"-->
+    <!--                app:srcCompat="@drawable/left_arrow" />-->
+    <!--            <TextView-->
+    <!--                android:id="@+id/textView8"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_marginStart="10dp"-->
+    <!--                android:layout_marginLeft="10dp"-->
+    <!--                android:layout_marginTop="25dp"-->
+    <!--                android:text="Back"-->
+    <!--                android:textSize="20dp"-->
+    <!--                app:layout_constraintStart_toEndOf="@+id/imageButton2"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
 
-
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MY Activity"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="35dp"
-            android:text="My Activity Calendar"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
-        <CalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="8dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="400dp"
-            android:maxHeight="200dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.428"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-       <androidx.appcompat.widget.LinearLayoutCompat
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:orientation="vertical">
-
-           <TextView
-               android:id="@+id/textView11"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="20dp"
-               android:layout_marginLeft="20dp"
-               android:layout_marginTop="27dp"
-               android:text="My Activity Analysis"
-               android:textStyle="bold"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
+    <!--        </androidx.appcompat.widget.LinearLayoutCompat>-->
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_gravity="center">
 
-           <ImageButton
-               android:id="@+id/imageButton4"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginTop="20dp"
-               android:layout_marginBottom="20dp"
-               android:background="#00000000"
-               app:layout_constraintBottom_toTopOf="@+id/imageButton5"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintTop_toBottomOf="@+id/textView11"
-               app:srcCompat="@drawable/analysis_1" />
-
-           <ImageButton
-               android:id="@+id/imageButton5"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="20dp"
-               android:background="#00000000"
-               app:layout_constraintBottom_toTopOf="@+id/imageButton6"
-               app:srcCompat="@drawable/analysis_2" />
-
-           <ImageButton
-               android:id="@+id/imageButton6"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="20dp"
-               android:background="#00000000"
-               app:layout_constraintBottom_toTopOf="@+id/imageButton7"
-
-               app:srcCompat="@drawable/analysis_3" />
-
-           <ImageButton
-               android:id="@+id/imageButton7"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginBottom="52dp"
-               android:background="#00000000"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintHorizontal_bias="0.471"
-
-               app:srcCompat="@drawable/analysis_4" />
-
-
-
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat="@drawable/heart" />
             </androidx.appcompat.widget.LinearLayoutCompat>
-       </androidx.appcompat.widget.LinearLayoutCompat>
 
-   </androidx.appcompat.widget.LinearLayoutCompat>
-</ScrollView>
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MY Activity"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:text="My Activity Calendar"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="400dp"
+                    android:maxHeight="200dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.428"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                   android:id="@+id/textView11"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="27dp"
+                   android:text="My Activity Analysis"
+                   android:textStyle="bold"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center">
+
+                <ImageButton
+                   android:id="@+id/imageButton4"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="20dp"
+                   android:layout_marginBottom="20dp"
+                   android:background="#00000000"
+                   app:layout_constraintBottom_toTopOf="@+id/imageButton5"
+                   app:layout_constraintEnd_toEndOf="parent"
+                   app:layout_constraintTop_toBottomOf="@+id/textView11"
+                   app:srcCompat="@drawable/analysis_1" />
+
+                <ImageButton
+                   android:id="@+id/imageButton5"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="20dp"
+                   android:background="#00000000"
+                   app:layout_constraintBottom_toTopOf="@+id/imageButton6"
+                   app:srcCompat="@drawable/analysis_2" />
+
+                <ImageButton
+                   android:id="@+id/imageButton6"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="20dp"
+                   android:background="#00000000"
+                   app:layout_constraintBottom_toTopOf="@+id/imageButton7"
+                   app:srcCompat="@drawable/analysis_3" />
+
+                <ImageButton
+                   android:id="@+id/imageButton7"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_marginBottom="52dp"
+                   android:background="#00000000"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintHorizontal_bias="0.471"
+                   app:srcCompat="@drawable/analysis_4" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
