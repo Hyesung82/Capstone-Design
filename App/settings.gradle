@@ -1,2 +1,2 @@
-include ':app'
-rootProject.name = "cap"
+rootProject.name = 'TFLite PoseNet Demo App'
+include ':app', ':posenet'

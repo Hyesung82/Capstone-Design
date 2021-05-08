@@ -16,6 +16,7 @@ import android.os.Environment
 import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
+import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -58,16 +59,15 @@ class Exercise : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
-            "OK") { dialogInterface: DialogInterface?, i: Int ->
-                val nextIntent = android.content.Intent(this, RmResult::class.java)
+            "OK"
+        ) { dialogInterface: DialogInterface?, i: Int ->
+            val nextIntent = android.content.Intent(this, RmResult::class.java)
             nextIntent.putExtra("rmValue", rmValue)
-                startActivity(nextIntent)
+            startActivity(nextIntent)
         }
         builder.show()
         //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
     }
-
-
 
 
     private fun Setpopup() {
@@ -76,9 +76,9 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-            val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
-            nextIntent.putExtra("activity", "init")
-            startActivity(nextIntent)
+                val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
+                nextIntent.putExtra("activity", "init")
+                startActivity(nextIntent)
             })
         builder.show()
     }
@@ -88,7 +88,7 @@ class Exercise : AppCompatActivity() {
 
     var interNum = 3
 
-    var mCamera: Camera? = null
+    /*var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
 
     lateinit var ivPicture1: ImageView
@@ -142,14 +142,17 @@ class Exercise : AppCompatActivity() {
         } catch (e: IOException) {
             Log.e(TAG, "Error accessing file: ${e.message}")
         }
-    }
+    }*/
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise)
-
-        videoView = findViewById(R.id.vvTest)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.camera_preview, PosenetActivity())
+            .commit()
+        /*videoView = findViewById(R.id.vvTest)
         val videoUri = Uri.parse("android.resource://$packageName/${R.raw.vv_test}")
         videoView.setMediaController(MediaController(this))
         videoView.setVideoURI(videoUri)
@@ -164,7 +167,7 @@ class Exercise : AppCompatActivity() {
             Toast.makeText(applicationContext, "An error occured while playing video",
                     Toast.LENGTH_LONG).show()
             false
-        }
+        }*/
 
         var intent = getIntent()
         var activity = intent.extras?.getString("activity")
@@ -208,10 +211,10 @@ class Exercise : AppCompatActivity() {
                 }
 
                 // RM setting
-                "rm" ->  Rmpopup()
+                "rm" -> Rmpopup()
 
                 // Initial setting
-                else->{
+                else -> {
 
                     Setpopup()
                 }
@@ -219,7 +222,7 @@ class Exercise : AppCompatActivity() {
         }
 
 
-        mContext = this.applicationContext
+        /*mContext = this.applicationContext
 
 
         // 앱의 메인액티비티에서 체크하도록 변경할 것
@@ -391,8 +394,8 @@ class Exercise : AppCompatActivity() {
             else -> null
         }
     }
-
-
+*/
+/*
     private fun shootAndStore(num: Int) {
         val handler1 = Handler()
         val handler2 = Handler()
@@ -521,7 +524,7 @@ class Exercise : AppCompatActivity() {
 
     }
 
-
-
+}*/
+    }
 }
 

@@ -9,7 +9,6 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -25,7 +24,7 @@ class fragment : AppCompatActivity() {
         setContentView(com.example.cap.R.layout.framelayout)
 
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-        transaction.replace(com.example.cap.R.id.main_frame, Infomation()).commitAllowingStateLoss()
+        transaction.replace(com.example.cap.R.id.main_frame, home()).commitAllowingStateLoss()
         val bottomNavigationView = findViewById<BottomNavigationView>(com.example.cap.R.id.navigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(ItemSelectedListener())
     }
@@ -35,8 +34,8 @@ class fragment : AppCompatActivity() {
         override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()
             when (menuItem.getItemId()) {
-               com.example.cap.R.id.infoItem -> transaction.replace(com.example.cap.R.id.main_frame, Infomation())
-                    .commitAllowingStateLoss()
+               // com.example.cap.R.id.searchItem -> transaction.replace(com.example.cap.R.id.main_frame, fragmentSearch)
+                 //   .commitAllowingStateLoss()
                 com.example.cap.R.id.homeItem -> transaction.replace(com.example.cap.R.id.main_frame, home())
                     .commitAllowingStateLoss()
                 com.example.cap.R.id.mypageItem -> transaction.replace(com.example.cap.R.id.main_frame, Mypage())

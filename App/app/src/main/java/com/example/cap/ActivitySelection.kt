@@ -5,6 +5,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import com.example.cap.R.id.videoView
+import kotlinx.android.synthetic.main.activity_selection.*
 
 class ActivitySelection : AppCompatActivity() {
     lateinit var videoView: VideoView
@@ -30,7 +32,6 @@ class ActivitySelection : AppCompatActivity() {
             false
         }
 
-
         val select : TextView = findViewById(R.id.tvExercise)
         val ivSensor: ImageView = findViewById(R.id.ivSensor)
         if(intent.hasExtra("exercise")){
@@ -44,7 +45,7 @@ class ActivitySelection : AppCompatActivity() {
 
         val Set : Button = findViewById(R.id.Set)
         Set.setOnClickListener {
-            val nextIntent = Intent(this, Exercise::class.java)
+            val nextIntent = Intent(this, CameraActivity::class.java)
             nextIntent.putExtra("activity", "init")
             startActivity(nextIntent)
         }
@@ -67,7 +68,7 @@ class ActivitySelection : AppCompatActivity() {
         Exercise.isEnabled = activity.equals("init") || activity.equals("rm")
     }
 
-    override fun onPause() {
+    /*override fun onPause() {
         super.onPause()
         if (videoView != null && videoView.isPlaying) videoView.pause()
     }
@@ -75,5 +76,5 @@ class ActivitySelection : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         if (videoView != null) videoView.stopPlayback()
-    }
+    }*/
 }

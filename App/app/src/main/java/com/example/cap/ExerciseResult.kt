@@ -2,41 +2,24 @@ package com.example.cap
 
 import android.content.Context
 import android.content.Intent
+import android.media.Image
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
-import com.dinuscxj.progressbar.CircleProgressBar
-import com.dinuscxj.progressbar.CircleProgressBar.ProgressFormatter
+import org.w3c.dom.Text
 
-
-
-class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
+class ExerciseResult : AppCompatActivity() {
 
     val feedbackImages = arrayOf(R.drawable.jb_result1, R.drawable.jb_result2, R.drawable.fake_result)
     val feedbackText = arrayOf("팔을 더 굽히세요", "팔을 더 굽히세요\n팔뚝에 힘을 더 주세요", "자세가 완벽해요\n팔뚝에 힘을 더 주세요")
 
-
-    override fun format(progress: Int, max: Int): CharSequence {
-        return String.format(
-            ExerciseResult.Companion.DEFAULT_PATTERN,
-            (progress.toFloat() / max.toFloat() * 100).toInt()
-        )
-    }
-
-    companion object {
-        private const val DEFAULT_PATTERN = "%d%%"
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise_result)
-        var circleProgressBar: CircleProgressBar? = null
-        circleProgressBar = findViewById(R.id.cpb_circlebar)
-        circleProgressBar.setProgress(70)
 
-
-        val button : ImageButton = findViewById(R.id.button)
+        val button : Button = findViewById(R.id.button)
         val weight : TextView = findViewById(R.id.resultweight)
         val tvTimes : TextView = findViewById(R.id.tvTimes)
         val tvSet : TextView = findViewById(R.id.tvSet)
