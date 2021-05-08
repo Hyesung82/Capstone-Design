@@ -8,7 +8,7 @@ import java.util.*
 @Entity(tableName = "daily_exercise_info_table")
 data class ExerciseInfo (
     @PrimaryKey(autoGenerate = true)
-    var ExerciseId: Long = 0L,
+    var exerciseId: Long = 0L,
 
     @ColumnInfo(name = "date")
     val date: Date = Date(System.currentTimeMillis()),
