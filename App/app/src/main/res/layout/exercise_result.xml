@@ -69,8 +69,8 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:padding="10dp">
 
@@ -80,7 +80,7 @@
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="5dp"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:inputType="number"
@@ -105,11 +105,12 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:orientation="vertical"
                 android:background="@drawable/layout_bg"
                 android:layout_margin="10dp"
+                android:gravity="center"
                 >
 
             <LinearLayout
@@ -151,19 +152,19 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
                 tools:ignore="MissingConstraints"
                 android:background="@drawable/layout_bg"
                 android:layout_margin="5dp">
 
                 <TextView
                     android:id="@+id/tvSet"
-                    android:layout_width="119dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="5dp"
                     android:ems="10"
                     android:gravity="center_horizontal"
                     android:inputType="number"
@@ -180,7 +181,7 @@
                     android:text="세트"
                     android:textAlignment="center"
                     android:textColor="@color/purple"
-                    android:textSize="40sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
