@@ -76,9 +76,9 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
     }
 
 
-    override fun onBackPressed() {
+//    override fun onBackPressed() {
 //        super.onBackPressed()
-    }
+//    }
 
 
     inner class MyGalleryAdapter(con: Context): BaseAdapter() {

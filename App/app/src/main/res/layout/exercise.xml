@@ -123,5 +123,4 @@
             android:text="운동 완료" />
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

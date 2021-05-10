@@ -11,11 +11,11 @@ data class ExerciseInfo (
     var exerciseId: Long = 0L,
 
     @ColumnInfo(name = "date")
-    val date: Date = Date(System.currentTimeMillis()),
+    val date: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "exercise_name")
-    val exerciseName: String = "랫풀다운",
+    var exerciseName: String = "랫풀다운",
 
     @ColumnInfo(name = "achievement")
-    val achievement: Int = 0
+    var achievement: Int = 0
 )

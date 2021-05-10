@@ -1,0 +1,16 @@
+<resources>
+
+    <style name="exercise_result">
+        <item name="android:layout_marginBottom">8dp</item>
+<!--        <item name="android:background">@android:color/holo_orange_light</item>-->
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+
+    <style name="exercise_date">
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="exercise_achievement">
+        <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
+    </style>
+</resources>
