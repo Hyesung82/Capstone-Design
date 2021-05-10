@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:ignore="MissingConstraints"
-    >
+    tools:ignore="MissingConstraints">
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -15,65 +14,60 @@
 <!--        android:background="@drawable/layout_bg"-->
 <!--        android:backgroundTint="@color/purple_200">-->
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="left"
+            android:padding="20dp"
+            android:gravity="left"
+            android:text="RESULT"
+            android:textStyle="bold"
+            android:textColor="@color/purple_200"
+            android:textSize="40sp" />
+
+        <com.dinuscxj.progressbar.CircleProgressBar
+            android:id="@+id/cpb_circlebar"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:progress_text_size="50sp"
+            app:style="solid_line"
+            app:progress_stroke_width="10dp "
+            app:progress_stroke_cap="round"
+            app:progress_start_color="#FFBB00"
+            app:progress_end_color="#ABF200"
+            android:layout_gravity="center" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:padding="20dp"
-                android:gravity="left"
-                android:text="RESULT"
-                android:textStyle="bold"
-                android:textColor="@color/purple_200"
-                android:textSize="40sp" />
-            <com.dinuscxj.progressbar.CircleProgressBar
-                android:id="@+id/cpb_circlebar"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                app:progress_text_size="50sp"
-                app:style="solid_line"
-                app:progress_stroke_width="10dp "
-                app:progress_stroke_cap="round"
-                app:progress_start_color="#FFBB00"
-                app:progress_end_color="#ABF200"
-                android:layout_gravity="center"
-               />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="5dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:background="@drawable/layout_bg"
-                android:layout_margin="5dp"
-                >
-
+            android:background="@drawable/layout_bg"
+            android:layout_margin="5dp">
 
             <LinearLayout
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:orientation="horizontal"
                 android:padding="10dp">
-
 
                 <TextView
                     android:id="@+id/resultweight"
@@ -99,96 +93,86 @@
                     android:textColor="@color/purple"
                     android:textSize="20sp"
                     android:textStyle="bold" />
-
             </LinearLayout>
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:background="@drawable/layout_bg"
+            android:layout_margin="10dp"
+            android:gravity="center">
 
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:orientation="vertical"
-                android:background="@drawable/layout_bg"
-                android:layout_margin="10dp"
-                android:gravity="center"
-                >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvTimes"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="5dp">
+                android:layout_gravity="center"
+                android:layout_marginRight="15dp"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="20sp" />
 
-
-
-                <TextView
-                    android:id="@+id/tvTimes"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="15dp"
-                    android:ems="10"
-                    android:gravity="center"
-                    android:inputType="number"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/count"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="회"
-                    android:textAlignment="center"
-                    android:textColor="@color/purple"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                </LinearLayout>
-
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="회"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints"
+            android:background="@drawable/layout_bg"
+            android:layout_margin="5dp">
 
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                tools:ignore="MissingConstraints"
-                android:background="@drawable/layout_bg"
-                android:layout_margin="5dp">
+            <TextView
+                android:id="@+id/tvSet"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:ems="10"
+                android:gravity="center_horizontal"
+                android:inputType="number"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="40sp" />
 
-                <TextView
-                    android:id="@+id/tvSet"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:inputType="number"
-                    android:text=""
-                    android:textAlignment="center"
-                    android:textSize="40sp" />
+            <TextView
+                android:id="@+id/sets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="세트"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <TextView
-                    android:id="@+id/sets"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="세트"
-                    android:textAlignment="center"
-                    android:textColor="@color/purple"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
@@ -229,28 +213,32 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp" />
 
-<!--    <Button-->
-<!--        android:id="@+id/button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:text="돌아가기" />-->
+    <TextView
+        android:id="@+id/tvMuscle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="근전도 값 테스트"
+        android:textAlignment="center"
+        android:gravity="center_horizontal" />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/button"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center"-->
+    <!--        android:text="돌아가기" />-->
+
     <ImageButton
         android:id="@+id/button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
-        android:background="@drawable/home"
-       >
+        android:background="@drawable/home" />
 
-    </ImageButton>
     <TextView
         android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="HOME">
-
-    </TextView>
-
-
+        android:text="HOME" />
 </LinearLayout>
