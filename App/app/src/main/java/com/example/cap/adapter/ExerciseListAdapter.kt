@@ -41,6 +41,11 @@ class ExerciseListAdapter : ListAdapter<ExerciseInfo, ExerciseListAdapter.Exerci
             fun create(parent: ViewGroup): ExerciseViewHolder {
                 val view: View = LayoutInflater.from(parent.context)
                     .inflate(R.layout.recyclerview_item, parent, false)
+
+                val drawables =
+                    arrayOf(R.drawable.analysis_1, R.drawable.analysis_2, R.drawable.analysis_3, R.drawable.analysis_4)
+                val random = Random()
+                view.setBackgroundResource(drawables[random.nextInt(4)])
                 return ExerciseViewHolder(view)
             }
         }
