@@ -30,6 +30,7 @@ import com.example.cap.database.ExerciseViewModelFactory
 import com.example.cap.database.ExercisesApplication
 import java.io.*
 import java.net.URL
+import java.util.*
 import kotlin.properties.Delegates
 
 class Exercise : AppCompatActivity() {
@@ -97,13 +98,18 @@ class Exercise : AppCompatActivity() {
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener {
             val replyIntent = Intent()
-            var currentTime = System.currentTimeMillis()
+            val currentTime = System.currentTimeMillis()
             replyIntent.putExtra(EXTRA_REPLY, System.currentTimeMillis())
             setResult(Activity.RESULT_OK, replyIntent)
 
             Log.i(TAG, "운동 시간: $currentTime")
 
-            val exercise = ExerciseInfo(currentTime)
+            val random = Random()
+            val randomExerciseName = arrayOf("랫풀다운", "벤치프레스", "스쿼트", "데드리프트")
+            val exercise = ExerciseInfo(
+                date = currentTime,
+                exerciseName = randomExerciseName[random.nextInt(4)],
+                achievement = random.nextInt(101))
             exerciseViewModel.insert(exercise)
 
 

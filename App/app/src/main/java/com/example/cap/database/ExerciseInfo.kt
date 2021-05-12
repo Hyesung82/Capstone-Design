@@ -3,7 +3,6 @@ package com.example.cap.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.util.*
 
 @Entity(tableName = "daily_exercise_info_table")
 data class ExerciseInfo (

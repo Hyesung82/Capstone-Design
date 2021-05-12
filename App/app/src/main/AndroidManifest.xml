@@ -33,9 +33,8 @@
         <activity android:name=".WeightInput" />
         <activity android:name=".RmResult" />
         <activity android:name=".fragment" />
-        <activity android:name=".basicSetting_sex"/>
-        <activity android:name=".basicSetting_age"/>
-
+        <activity android:name=".basicSetting_sex" />
+        <activity android:name=".basicSetting_age" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

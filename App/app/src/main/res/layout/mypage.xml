@@ -101,20 +101,10 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-                        <CalendarView
-                            android:id="@+id/calendarView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="8dp"
-                            android:adjustViewBounds="true"
-                            android:maxWidth="400dp"
-                            android:maxHeight="200dp"
-                            android:scaleType="fitCenter"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.428"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                        <com.skyhope.eventcalenderlibrary.CalenderEvent
+                            android:id="@+id/calendar_event"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             android:id="@+id/textView11"
@@ -125,7 +115,6 @@
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/calendarView" />
-
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </LinearLayout>
@@ -141,58 +130,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-<!--            <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
-<!--                -->
-<!--                <androidx.appcompat.widget.LinearLayoutCompat-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="vertical"-->
-<!--                    android:layout_gravity="center">-->
 
-<!--                    <ImageButton-->
-<!--                       android:id="@+id/imageButton4"-->
-<!--                       android:layout_width="wrap_content"-->
-<!--                       android:layout_height="wrap_content"-->
-<!--                       android:layout_marginTop="20dp"-->
-<!--                       android:layout_marginBottom="20dp"-->
-<!--                       android:background="#00000000"-->
-<!--                       app:layout_constraintBottom_toTopOf="@+id/imageButton5"-->
-<!--                       app:layout_constraintEnd_toEndOf="parent"-->
-<!--                       app:layout_constraintTop_toBottomOf="@+id/textView11"-->
-<!--                       app:srcCompat="@drawable/analysis_1" />-->
-
-<!--                    <ImageButton-->
-<!--                       android:id="@+id/imageButton5"-->
-<!--                       android:layout_width="wrap_content"-->
-<!--                       android:layout_height="wrap_content"-->
-<!--                       android:layout_marginBottom="20dp"-->
-<!--                       android:background="#00000000"-->
-<!--                       app:layout_constraintBottom_toTopOf="@+id/imageButton6"-->
-<!--                       app:srcCompat="@drawable/analysis_2" />-->
-
-<!--                    <ImageButton-->
-<!--                       android:id="@+id/imageButton6"-->
-<!--                       android:layout_width="wrap_content"-->
-<!--                       android:layout_height="wrap_content"-->
-<!--                       android:layout_marginBottom="20dp"-->
-<!--                       android:background="#00000000"-->
-<!--                       app:layout_constraintBottom_toTopOf="@+id/imageButton7"-->
-<!--                       app:srcCompat="@drawable/analysis_3" />-->
-
-<!--                    <ImageButton-->
-<!--                       android:id="@+id/imageButton7"-->
-<!--                       android:layout_width="wrap_content"-->
-<!--                       android:layout_height="wrap_content"-->
-<!--                       android:layout_marginBottom="52dp"-->
-<!--                       android:background="#00000000"-->
-<!--                       app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                       app:layout_constraintHorizontal_bias="0.471"-->
-<!--                       app:srcCompat="@drawable/analysis_4" />-->
-<!--                </androidx.appcompat.widget.LinearLayoutCompat>-->
-<!--            </androidx.appcompat.widget.LinearLayoutCompat>-->
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
