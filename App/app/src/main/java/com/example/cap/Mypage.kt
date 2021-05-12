@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cap.adapter.ExerciseListAdapter
-import com.example.cap.database.ExerciseDatabaseDao
 import com.example.cap.database.ExerciseInfoViewModel
 import com.example.cap.database.ExerciseViewModelFactory
 import com.example.cap.database.ExercisesApplication

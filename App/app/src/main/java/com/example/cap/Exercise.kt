@@ -1,7 +1,6 @@
 package com.example.cap
 
 import android.Manifest.permission.*
-import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -55,7 +54,7 @@ class Exercise : AppCompatActivity() {
         videoView.start()
 
         videoView.setOnCompletionListener {
-            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
+//            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
         }
         videoView.setOnErrorListener { mp, what, extra ->
             Toast.makeText(applicationContext, "An error occured while playing video",
@@ -97,18 +96,18 @@ class Exercise : AppCompatActivity() {
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener {
-            val replyIntent = Intent()
             val currentTime = System.currentTimeMillis()
-            replyIntent.putExtra(EXTRA_REPLY, System.currentTimeMillis())
-            setResult(Activity.RESULT_OK, replyIntent)
+            val sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")
 
-            Log.i(TAG, "운동 시간: $currentTime")
+            Log.i(TAG, "운동 완료: $currentTime $curExercise")
 
             val random = Random()
             val randomExerciseName = arrayOf("랫풀다운", "벤치프레스", "스쿼트", "데드리프트")
             val exercise = ExerciseInfo(
                 date = currentTime,
-                exerciseName = randomExerciseName[random.nextInt(4)],
+                exerciseName = curExercise!!,
                 achievement = random.nextInt(101))
             exerciseViewModel.insert(exercise)
 

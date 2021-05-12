@@ -4,6 +4,7 @@
     <string name="preference_file_key">user_info</string>
     <string name="saved_user_gender">gender</string>
     <string name="saved_user_age">age</string>
+    <string name="saved_exercise">cur_exercise</string>
 
     <string name="mButton">랫풀다운</string>
     <string name="btn2">벤치프레스</string>

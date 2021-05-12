@@ -1,5 +1,6 @@
 package com.example.cap
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,9 @@ class ActivitySelection : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selection)
 
+        val sharedPref = getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+
         videoView = findViewById(R.id.videoView)
         val videoUri = Uri.parse("android.resource://$packageName/${R.raw.lat_pulldown}")
         videoView.setMediaController(MediaController(this))
@@ -22,7 +26,7 @@ class ActivitySelection : AppCompatActivity() {
         videoView.start()
 
         videoView.setOnCompletionListener {
-            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
+//            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
         }
         videoView.setOnErrorListener { mp, what, extra ->
             Toast.makeText(applicationContext, "An error occured while playing video",
@@ -33,13 +37,15 @@ class ActivitySelection : AppCompatActivity() {
 
         val select : TextView = findViewById(R.id.tvExercise)
         val ivSensor: ImageView = findViewById(R.id.ivSensor)
-        if(intent.hasExtra("exercise")){
-            val curExercise = intent.getStringExtra("exercise")
-            select.text = " ${curExercise} "
-            when(curExercise) {
-                "랫풀다운" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
-                else -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
-            }
+
+        val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "값 없음")
+        select.text = " $curExercise "
+        when(curExercise) {
+            "랫풀다운" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+            "벤치프레스" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+            "스쿼트" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+            "데드리프트" -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
+            else -> ivSensor.setImageResource(R.drawable.sensor_lat_pulldown)
         }
 
         val Set : Button = findViewById(R.id.Set)
