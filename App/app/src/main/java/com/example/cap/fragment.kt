@@ -1,31 +1,24 @@
 package com.example.cap
 
-import android.content.Intent
-
-
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class fragment : AppCompatActivity() {
+    private val TAG = "fragment"
 
-
-   private val fragmentManager: FragmentManager = supportFragmentManager
-   private val fragmentMypage: Mypage = Mypage()
-    private val fragmenthome = home()
+    private val fragmentManager: FragmentManager = supportFragmentManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.example.cap.R.layout.framelayout)
+        setContentView(R.layout.framelayout)
 
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
-        transaction.replace(com.example.cap.R.id.main_frame, Infomation()).commitAllowingStateLoss()
+        transaction.replace(R.id.main_frame, Infomation()).commitAllowingStateLoss()
         val bottomNavigationView = findViewById<BottomNavigationView>(com.example.cap.R.id.navigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener(ItemSelectedListener())
     }
@@ -35,20 +28,14 @@ class fragment : AppCompatActivity() {
         override fun onNavigationItemSelected(menuItem: MenuItem): Boolean {
             val transaction: FragmentTransaction = fragmentManager.beginTransaction()
             when (menuItem.getItemId()) {
-               com.example.cap.R.id.infoItem -> transaction.replace(com.example.cap.R.id.main_frame, Infomation())
+                R.id.infoItem -> transaction.replace(R.id.main_frame, Infomation())
                     .commitAllowingStateLoss()
-                com.example.cap.R.id.homeItem -> transaction.replace(com.example.cap.R.id.main_frame, home())
+                R.id.homeItem -> transaction.replace(R.id.main_frame, home())
                     .commitAllowingStateLoss()
-                com.example.cap.R.id.mypageItem -> transaction.replace(com.example.cap.R.id.main_frame, Mypage())
+                R.id.mypageItem -> transaction.replace(R.id.main_frame, Mypage())
                     .commitAllowingStateLoss()
             }
             return true
         }
     }
-
-
-    }
-
-
-
-
+}

@@ -17,7 +17,8 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Cap.">
+        android:theme="@style/Theme.Cap."
+        android:usesCleartextTraffic="true">
         <activity android:name=".ExerciseResult" />
         <activity android:name=".MainActivity">
             <intent-filter>

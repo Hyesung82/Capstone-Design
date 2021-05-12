@@ -2,7 +2,6 @@ package com.example.cap
 
 import android.Manifest.permission.*
 import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -25,14 +24,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import com.example.cap.database.ExerciseInfo
 import com.example.cap.database.ExerciseInfoViewModel
+import com.example.cap.database.ExerciseViewModelFactory
+import com.example.cap.database.ExercisesApplication
 import java.io.*
 import java.net.URL
 import kotlin.properties.Delegates
-import kotlin.system.measureTimeMillis
 
 class Exercise : AppCompatActivity() {
+    private val TAG = "Exercise"
+
     lateinit var videoView: VideoView
+
+    private val exerciseViewModel: ExerciseInfoViewModel by viewModels {
+        ExerciseViewModelFactory((application as ExercisesApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,10 +97,15 @@ class Exercise : AppCompatActivity() {
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener {
             val replyIntent = Intent()
+            var currentTime = System.currentTimeMillis()
             replyIntent.putExtra(EXTRA_REPLY, System.currentTimeMillis())
             setResult(Activity.RESULT_OK, replyIntent)
 
-//            finish()
+            Log.i(TAG, "운동 시간: $currentTime")
+
+            val exercise = ExerciseInfo(currentTime)
+            exerciseViewModel.insert(exercise)
+
 
             when (activity) {
                 // Exercise
@@ -186,7 +198,7 @@ class Exercise : AppCompatActivity() {
         val numTimes = 3
         val numSet = 1
 
-        val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
+        val nextIntent = Intent(this, ExerciseResult::class.java)
         val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("resultweight", weight)
         nextIntent.putExtra("resultTimes", numTimes)
@@ -210,7 +222,7 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK") { dialogInterface: DialogInterface?, i: Int ->
-            val nextIntent = android.content.Intent(this, RmResult::class.java)
+            val nextIntent = Intent(this, RmResult::class.java)
             nextIntent.putExtra("rmValue", rmValue)
             startActivity(nextIntent)
         }
@@ -227,7 +239,7 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-                val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
+                val nextIntent = Intent(this, ActivitySelection::class.java)
                 nextIntent.putExtra("activity", "init")
                 startActivity(nextIntent)
             })
