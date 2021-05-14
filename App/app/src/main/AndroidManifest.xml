@@ -34,6 +34,7 @@
         <activity android:name=".fragment" />
         <activity android:name=".basicSetting_sex"/>
         <activity android:name=".basicSetting_age"/>
+        <activity android:name=".YogaSelection"/>
 
 
         <provider

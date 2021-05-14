@@ -18,40 +18,27 @@ class home : Fragment() {
         savedInstanceState:Bundle?
 
     ):View? {
-        val view = inflater.inflate(com.example.cap.R.layout.exercise_selection, container, false)
+        val view = inflater.inflate(com.example.cap.R.layout.athletic_field_selection, container, false)
         return view}
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val latpull: ImageButton = view.findViewById(com.example.cap.R.id.Latpull)
 
-        latpull.setOnClickListener {
+        val fitness: ImageButton = view.findViewById(R.id.fitness)
+        fitness.setOnClickListener{
 
-            val nextIntent = Intent(activity, ActivitySelection::class.java)
-            nextIntent.putExtra("exercise", "랫풀다운")
+            val nextIntent = Intent(activity, ExerciseSelection::class.java)
             startActivity(nextIntent)
         }
-        val bench: ImageButton = view.findViewById(com.example.cap.R.id.Bench)
-            bench.setOnClickListener {
 
-            val nextIntent = Intent(activity, ActivitySelection::class.java)
-            nextIntent.putExtra("exercise", "벤치프레스")
+        val yoga: ImageButton = view.findViewById(R.id.yoga)
+        yoga.setOnClickListener{
+            val nextIntent = Intent(activity, YogaSelection::class.java)
             startActivity(nextIntent)
         }
-        val squat : ImageButton = view.findViewById(R.id.Squat)
-        squat.setOnClickListener {
-            val nextIntent = Intent(activity, ActivitySelection::class.java)
-            nextIntent.putExtra("exercise", "스쿼트")
-            startActivity(nextIntent)
-        }
-        val deadlift : ImageButton = view.findViewById(R.id.Deadlift)
-        deadlift.setOnClickListener {
-            val nextIntent = Intent(activity, ActivitySelection::class.java)
-            nextIntent.putExtra("exercise", "데드리프트")
-            startActivity(nextIntent)
-        }
+
 
     }}
 
