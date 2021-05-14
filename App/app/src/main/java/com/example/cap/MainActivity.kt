@@ -1,6 +1,5 @@
 package com.example.cap
 
-
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -20,6 +19,6 @@ class MainActivity : Activity() {
         btn_start2.setOnClickListener {
             val nextIntent = Intent(this, basicSetting_sex::class.java)
             startActivity(nextIntent)
+        }
     }
-}
 }

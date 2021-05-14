@@ -1,8 +1,6 @@
 package com.example.cap
 
 import android.Manifest.permission.*
-import android.app.Activity
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -25,14 +23,23 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import com.example.cap.database.ExerciseInfo
 import com.example.cap.database.ExerciseInfoViewModel
+import com.example.cap.database.ExerciseViewModelFactory
+import com.example.cap.database.ExercisesApplication
 import java.io.*
 import java.net.URL
+import java.util.*
 import kotlin.properties.Delegates
-import kotlin.system.measureTimeMillis
 
 class Exercise : AppCompatActivity() {
+    private val TAG = "Exercise"
+
     lateinit var videoView: VideoView
+
+    private val exerciseViewModel: ExerciseInfoViewModel by viewModels {
+        ExerciseViewModelFactory((application as ExercisesApplication).repository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,7 +54,7 @@ class Exercise : AppCompatActivity() {
         videoView.start()
 
         videoView.setOnCompletionListener {
-            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
+//            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
         }
         videoView.setOnErrorListener { mp, what, extra ->
             Toast.makeText(applicationContext, "An error occured while playing video",
@@ -89,11 +96,21 @@ class Exercise : AppCompatActivity() {
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener {
-            val replyIntent = Intent()
-            replyIntent.putExtra(EXTRA_REPLY, System.currentTimeMillis())
-            setResult(Activity.RESULT_OK, replyIntent)
+            val currentTime = System.currentTimeMillis()
+            val sharedPref = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")
 
-//            finish()
+            Log.i(TAG, "운동 완료: $currentTime $curExercise")
+
+            val random = Random()
+            val randomExerciseName = arrayOf("랫풀다운", "벤치프레스", "스쿼트", "데드리프트")
+            val exercise = ExerciseInfo(
+                date = currentTime,
+                exerciseName = curExercise!!,
+                achievement = random.nextInt(101))
+            exerciseViewModel.insert(exercise)
+
 
             when (activity) {
                 // Exercise
@@ -186,7 +203,7 @@ class Exercise : AppCompatActivity() {
         val numTimes = 3
         val numSet = 1
 
-        val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
+        val nextIntent = Intent(this, ExerciseResult::class.java)
         val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("resultweight", weight)
         nextIntent.putExtra("resultTimes", numTimes)
@@ -210,7 +227,7 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK") { dialogInterface: DialogInterface?, i: Int ->
-            val nextIntent = android.content.Intent(this, RmResult::class.java)
+            val nextIntent = Intent(this, RmResult::class.java)
             nextIntent.putExtra("rmValue", rmValue)
             startActivity(nextIntent)
         }
@@ -227,7 +244,7 @@ class Exercise : AppCompatActivity() {
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK", { dialogInterface: DialogInterface?, i: Int ->
-                val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
+                val nextIntent = Intent(this, ActivitySelection::class.java)
                 nextIntent.putExtra("activity", "init")
                 startActivity(nextIntent)
             })

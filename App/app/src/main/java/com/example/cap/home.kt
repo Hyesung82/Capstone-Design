@@ -1,20 +1,22 @@
 package com.example.cap
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.exercise_selection.*
 
 
 class home : Fragment() {
+    private val TAG = "home"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
+
         savedInstanceState:Bundle?
 
     ):View? {
@@ -39,10 +41,8 @@ class home : Fragment() {
             startActivity(nextIntent)
         }
 
-
-    }}
-
-
+    }
+}
 
 
 

@@ -7,20 +7,26 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dinuscxj.progressbar.CircleProgressBar
 import com.dinuscxj.progressbar.CircleProgressBar.ProgressFormatter
+import com.example.cap.database.ExerciseInfoViewModel
+import com.example.cap.database.ExerciseViewModelFactory
+import com.example.cap.database.ExercisesApplication
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
 
-class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
-
+class ExerciseResult : AppCompatActivity(), ProgressFormatter {
     val feedbackImages = arrayOf(R.drawable.jb_result1, R.drawable.jb_result2, R.drawable.fake_result)
     val feedbackText = arrayOf("팔을 더 굽히세요", "팔을 더 굽히세요\n팔뚝에 힘을 더 주세요", "자세가 완벽해요\n팔뚝에 힘을 더 주세요")
 
+    private val exerciseViewModel: ExerciseInfoViewModel by viewModels {
+        ExerciseViewModelFactory((application as ExercisesApplication).repository)
+    }
 
     inner class MyGalleryAdapter(con: Context): BaseAdapter() {
         var context: Context = con
@@ -82,7 +88,7 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
         tvSet.text = "${numSet}"
 
         // TODO: server 주소
-//        networking("server address")
+        networking("http://192.168.249.217:8080/getEMG") // 8080
 
         gExerResult.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
             ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
@@ -92,7 +98,7 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
         }
 
         button.setOnClickListener {
-            val nextIntent = Intent(this, ExerciseSelection::class.java)
+            val nextIntent = Intent(this, fragment::class.java)
             nextIntent.putExtra("activate", 0)
             startActivity(nextIntent)
         }
@@ -102,9 +108,10 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
         private const val DEFAULT_PATTERN = "%d%%"
     }
 
-//    override fun onBackPressed() {
+    override fun onBackPressed() {
 //        super.onBackPressed()
-//    }
+        startActivity(Intent(this, fragment::class.java))
+    }
 
 
     override fun format(progress: Int, max: Int): CharSequence {
@@ -122,6 +129,7 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
                 // 서버와의 연결 생성
                 val urlConnection = url.openConnection() as HttpURLConnection
                 urlConnection.requestMethod = "GET"
+                Log.i("ExerciseResult", "responseCode: ${urlConnection.responseCode}")
 
                 if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
                     // 데이터 읽기
@@ -139,7 +147,7 @@ class ExerciseResult : AppCompatActivity() ,ProgressFormatter {
                     runOnUiThread {
                         Log.i("ExerciseResult", "센서로부터 받은 데이터: $content")
                         val tvMuscle = findViewById<TextView>(R.id.tvMuscle)
-                        tvMuscle.text = content
+                        tvMuscle.text = "센서로부터 받은 데이터: $content"
                     }
                 }
             } catch (e: Exception) {

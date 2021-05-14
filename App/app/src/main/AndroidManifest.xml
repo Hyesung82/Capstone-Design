@@ -17,7 +17,8 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Cap.">
+        android:theme="@style/Theme.Cap."
+        android:usesCleartextTraffic="true">
         <activity android:name=".ExerciseResult" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -32,10 +33,10 @@
         <activity android:name=".WeightInput" />
         <activity android:name=".RmResult" />
         <activity android:name=".fragment" />
+
         <activity android:name=".basicSetting_sex"/>
         <activity android:name=".basicSetting_age"/>
         <activity android:name=".YogaSelection"/>
-
 
         <provider
             android:name="androidx.core.content.FileProvider"
