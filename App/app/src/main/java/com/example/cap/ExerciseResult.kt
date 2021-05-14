@@ -11,9 +11,13 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.dinuscxj.progressbar.CircleProgressBar
 import com.dinuscxj.progressbar.CircleProgressBar.ProgressFormatter
+import com.example.cap.database.ExerciseDatabaseDao
 import com.example.cap.database.ExerciseInfoViewModel
 import com.example.cap.database.ExerciseViewModelFactory
 import com.example.cap.database.ExercisesApplication
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -57,10 +61,14 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise_result)
 
-        var circleProgressBar: CircleProgressBar? = null
-        circleProgressBar = findViewById(R.id.cpb_circlebar)
-        circleProgressBar.setProgress(70)
+        val sharedPref = getSharedPreferences(
+            getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+        val curTime = sharedPref.getLong(getString(R.string.saved_time), System.currentTimeMillis())
 
+        val circleProgressBar: CircleProgressBar = findViewById(R.id.cpb_circlebar)
+        CoroutineScope(Dispatchers.IO).launch {
+            circleProgressBar.progress = exerciseViewModel.getToday(curTime).achievement
+        }
 
         val button : ImageButton = findViewById(R.id.button)
         val weight : TextView = findViewById(R.id.resultweight)
@@ -116,7 +124,7 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
 
     override fun format(progress: Int, max: Int): CharSequence {
         return String.format(
-            ExerciseResult.Companion.DEFAULT_PATTERN,
+            DEFAULT_PATTERN,
             (progress.toFloat() / max.toFloat() * 100).toInt()
         )
     }

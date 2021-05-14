@@ -5,6 +5,7 @@
     <string name="saved_user_gender">gender</string>
     <string name="saved_user_age">age</string>
     <string name="saved_exercise">cur_exercise</string>
+    <string name="saved_time">cur_time</string>
 
     <string name="mButton">랫풀다운</string>
     <string name="btn2">벤치프레스</string>

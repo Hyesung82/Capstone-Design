@@ -100,11 +100,13 @@ class Exercise : AppCompatActivity() {
             val sharedPref = getSharedPreferences(
                 getString(R.string.preference_file_key), Context.MODE_PRIVATE)
             val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")
+            val editor = sharedPref.edit()
+            editor.putLong(getString(R.string.saved_time), currentTime)
+            editor.commit()
 
             Log.i(TAG, "운동 완료: $currentTime $curExercise")
 
             val random = Random()
-            val randomExerciseName = arrayOf("랫풀다운", "벤치프레스", "스쿼트", "데드리프트")
             val exercise = ExerciseInfo(
                 date = currentTime,
                 exerciseName = curExercise!!,

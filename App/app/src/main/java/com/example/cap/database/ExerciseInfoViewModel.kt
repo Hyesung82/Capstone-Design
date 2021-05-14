@@ -11,6 +11,8 @@ class ExerciseInfoViewModel(private val repository: ExerciseRepository) : ViewMo
         repository.insert(exercise)
     }
 
+    fun getToday(today: Long) = repository.getToday(today)
+
     private val _navigateToExerciseInfo = MutableLiveData<Boolean?>()
 }
 

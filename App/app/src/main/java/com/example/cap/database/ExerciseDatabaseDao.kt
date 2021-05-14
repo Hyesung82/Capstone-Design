@@ -18,7 +18,7 @@ interface ExerciseDatabaseDao {
     fun get(): Flow<List<ExerciseInfo>>
 
     @Query("SELECT * from daily_exercise_info_table WHERE date = :date")
-    suspend fun getToday(date: Long): ExerciseInfo
+    fun getToday(date: Long): ExerciseInfo
 
     @Query("DELETE FROM daily_exercise_info_table")
     suspend fun deleteAll()
