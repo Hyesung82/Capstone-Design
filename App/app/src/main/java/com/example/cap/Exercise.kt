@@ -1,51 +1,100 @@
 package com.example.cap
 
-import android.Manifest.permission.*
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Matrix
-import android.hardware.Camera
-import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.util.Log
-import android.widget.*
+import android.view.WindowManager
+import android.widget.Button
+import android.widget.TextView
+import android.widget.VideoView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import com.example.cap.database.ExerciseInfo
 import com.example.cap.database.ExerciseInfoViewModel
 import com.example.cap.database.ExerciseViewModelFactory
 import com.example.cap.database.ExercisesApplication
-import java.io.*
-import java.net.URL
 import java.util.*
 import kotlin.properties.Delegates
 
 class Exercise : AppCompatActivity() {
-    private val TAG = "Exercise"
-
     lateinit var videoView: VideoView
 
     private val exerciseViewModel: ExerciseInfoViewModel by viewModels {
         ExerciseViewModelFactory((application as ExercisesApplication).repository)
     }
 
+    var weight by Delegates.notNull<Int>()
+
+    var interNum = 3
+
+    /*var mCamera: Camera? = null
+    private var mPreview: CameraPreview? = null
+
+    lateinit var ivPicture1: ImageView
+    lateinit var ivPicture2: ImageView
+    lateinit var ivPicture3: ImageView
+    lateinit var ivPicture4: ImageView
+    lateinit var ivPicture5: ImageView
+    lateinit var ivPicture6: ImageView
+    lateinit var ivPicture7: ImageView
+    lateinit var ivPictures: Array<ImageView>
+
+    lateinit var curFileName: String
+
+    var pictureNum = 0
+
+    lateinit var mContext: Context
+
+    val mPicture = Camera.PictureCallback { data, _ ->
+        val pictureFile: File = getOutputMediaFile(MEDIA_TYPE_IMAGE) ?: run {
+            Log.e(TAG, ("Error creating media file, check storage permissions"))
+            return@PictureCallback
+        }
+
+
+        // 사진 회전
+        var storedBitmap = BitmapFactory.decodeByteArray(data, 0, data.size, null)
+        var mat = Matrix()
+        mat.postRotate(90F)
+        storedBitmap = Bitmap.createBitmap(
+            storedBitmap,
+            0,
+            0,
+            storedBitmap.width,
+            storedBitmap.height,
+            mat,
+            true
+        )
+        var bos = ByteArrayOutputStream()
+        storedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
+        var bitmapData = bos.toByteArray()
+        storedBitmap.recycle()
+
+
+        try {
+            val fos = FileOutputStream(pictureFile)
+//            fos.write(data)
+            fos.write(bitmapData)
+            fos.close()
+        } catch (e: FileNotFoundException) {
+            Log.e(TAG, "File not found: ${e.message}")
+        } catch (e: IOException) {
+            Log.e(TAG, "Error accessing file: ${e.message}")
+        }
+    }*/
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise)
-
-        videoView = findViewById(R.id.vvTest)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+            .replace(R.id.camera_preview, PosenetActivity())
+            .commit()
+        /*videoView = findViewById(R.id.vvTest)
         val videoUri = Uri.parse("android.resource://$packageName/${R.raw.vv_test}")
         videoView.setMediaController(MediaController(this))
         videoView.setVideoURI(videoUri)
@@ -54,13 +103,13 @@ class Exercise : AppCompatActivity() {
         videoView.start()
 
         videoView.setOnCompletionListener {
-//            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Video completed", Toast.LENGTH_LONG).show()
         }
         videoView.setOnErrorListener { mp, what, extra ->
             Toast.makeText(applicationContext, "An error occured while playing video",
                     Toast.LENGTH_LONG).show()
             false
-        }
+        }*/
 
         var intent = getIntent()
         var activity = intent.extras?.getString("activity")
@@ -113,7 +162,6 @@ class Exercise : AppCompatActivity() {
                 achievement = random.nextInt(101))
             exerciseViewModel.insert(exercise)
 
-
             when (activity) {
                 // Exercise
                 // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
@@ -122,10 +170,10 @@ class Exercise : AppCompatActivity() {
                 }
 
                 // RM setting
-                "rm" ->  Rmpopup()
+                "rm" -> Rmpopup()
 
                 // Initial setting
-                else->{
+                else -> {
 
                     Setpopup()
                 }
@@ -133,7 +181,7 @@ class Exercise : AppCompatActivity() {
         }
 
 
-        mContext = this.applicationContext
+        /*mContext = this.applicationContext
 
 
         // 앱의 메인액티비티에서 체크하도록 변경할 것
@@ -192,125 +240,6 @@ class Exercise : AppCompatActivity() {
 
             // AsyncTask에서는 view를 변경할 수 없음 ㅠㅠ -> 사용 X
 //            TaskTakePicture1().execute()
-        }
-    }
-
-    companion object {
-        const val EXTRA_REPLY = "com.example.android.cap.REPLY"
-    }
-
-
-    private fun exerciseOK() {
-        // 추후에 입력 받는 식으로 변경할 것
-        val numTimes = 3
-        val numSet = 1
-
-        val nextIntent = Intent(this, ExerciseResult::class.java)
-        val weight = intent.extras!!.getInt("weight")
-        nextIntent.putExtra("resultweight", weight)
-        nextIntent.putExtra("resultTimes", numTimes)
-        nextIntent.putExtra("resultSet", numSet)
-
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("운동 완료")
-        builder.setPositiveButton(
-            "OK", { dialogInterface: DialogInterface?, i: Int ->
-                startActivity(nextIntent)
-            })
-        builder.show()
-    }
-
-    private fun Rmpopup() {
-        // Calculate RM
-        // 추후에 5kg 단위로 바꿀 것
-        var rmValue = weight + weight * 0.025 * 7
-
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("설정 완료")
-        builder.setPositiveButton(
-            "OK") { dialogInterface: DialogInterface?, i: Int ->
-            val nextIntent = Intent(this, RmResult::class.java)
-            nextIntent.putExtra("rmValue", rmValue)
-            startActivity(nextIntent)
-        }
-        builder.show()
-        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
-    }
-
-
-
-
-    private fun Setpopup() {
-
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("설정 완료")
-        builder.setPositiveButton(
-            "OK", { dialogInterface: DialogInterface?, i: Int ->
-                val nextIntent = Intent(this, ActivitySelection::class.java)
-                nextIntent.putExtra("activity", "init")
-                startActivity(nextIntent)
-            })
-        builder.show()
-    }
-
-
-    var weight by Delegates.notNull<Int>()
-
-    var interNum = 3
-
-    var mCamera: Camera? = null
-    private var mPreview: CameraPreview? = null
-
-    lateinit var ivPicture1: ImageView
-    lateinit var ivPicture2: ImageView
-    lateinit var ivPicture3: ImageView
-    lateinit var ivPicture4: ImageView
-    lateinit var ivPicture5: ImageView
-    lateinit var ivPicture6: ImageView
-    lateinit var ivPicture7: ImageView
-    lateinit var ivPictures: Array<ImageView>
-
-    lateinit var curFileName: String
-
-    var pictureNum = 0
-
-    lateinit var mContext: Context
-
-    val mPicture = Camera.PictureCallback { data, _ ->
-        val pictureFile: File = getOutputMediaFile(MEDIA_TYPE_IMAGE) ?: run {
-            Log.e(TAG, ("Error creating media file, check storage permissions"))
-            return@PictureCallback
-        }
-
-
-        // 사진 회전
-        var storedBitmap = BitmapFactory.decodeByteArray(data, 0, data.size, null)
-        var mat = Matrix()
-        mat.postRotate(90F)
-        storedBitmap = Bitmap.createBitmap(
-            storedBitmap,
-            0,
-            0,
-            storedBitmap.width,
-            storedBitmap.height,
-            mat,
-            true
-        )
-        var bos = ByteArrayOutputStream()
-        storedBitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos)
-        var bitmapData = bos.toByteArray()
-        storedBitmap.recycle()
-
-
-        try {
-            val fos = FileOutputStream(pictureFile)
-//            fos.write(data)
-            fos.write(bitmapData)
-            fos.close()
-        } catch (e: FileNotFoundException) {
-            Log.e(TAG, "File not found: ${e.message}")
-        } catch (e: IOException) {
-            Log.e(TAG, "Error accessing file: ${e.message}")
         }
     }
 
@@ -424,8 +353,8 @@ class Exercise : AppCompatActivity() {
             else -> null
         }
     }
-
-
+*/
+/*
     private fun shootAndStore(num: Int) {
         val handler1 = Handler()
         val handler2 = Handler()
@@ -554,5 +483,59 @@ class Exercise : AppCompatActivity() {
 
     }
 
+}*/
+    }
+
+    private fun exerciseOK() {
+        // 추후에 입력 받는 식으로 변경할 것
+        val numTimes = 3
+        val numSet = 1
+
+        val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
+        val weight = intent.extras!!.getInt("weight")
+        nextIntent.putExtra("resultweight", weight)
+        nextIntent.putExtra("resultTimes", numTimes)
+        nextIntent.putExtra("resultSet", numSet)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("운동 완료")
+        builder.setPositiveButton(
+            "OK", { dialogInterface: DialogInterface?, i: Int ->
+                startActivity(nextIntent)
+            })
+        builder.show()
+    }
+
+    private fun Rmpopup() {
+        // Calculate RM
+        // 추후에 5kg 단위로 바꿀 것
+        var rmValue = weight + weight * 0.025 * 7
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("설정 완료")
+        builder.setPositiveButton(
+            "OK"
+        ) { dialogInterface: DialogInterface?, i: Int ->
+            val nextIntent = android.content.Intent(this, RmResult::class.java)
+            nextIntent.putExtra("rmValue", rmValue)
+            startActivity(nextIntent)
+        }
+        builder.show()
+        //Toast.makeText(this,"Hi! I am Toast Message",Toast.LENGTH_SHORT).show()
+    }
+
+
+    private fun Setpopup() {
+
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("설정 완료")
+        builder.setPositiveButton(
+            "OK", { dialogInterface: DialogInterface?, i: Int ->
+                val nextIntent = android.content.Intent(this, ActivitySelection::class.java)
+                nextIntent.putExtra("activity", "init")
+                startActivity(nextIntent)
+            })
+        builder.show()
+    }
 }
 

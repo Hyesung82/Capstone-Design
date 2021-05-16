@@ -45,15 +45,9 @@
         <FrameLayout
             android:id="@+id/camera_preview"
             android:layout_width="match_parent"
-            android:paddingLeft="100dp"
-            android:paddingRight="100dp"
-            android:layout_height="300dp"
-            android:layout_weight="4">
+            android:layout_height="236dp"
+            tools:context="com.example.cap.CameraActivity">
 
-            <VideoView
-                android:id="@+id/vvTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </FrameLayout>
 
         <LinearLayout
@@ -123,4 +117,5 @@
             android:text="운동 완료" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,18 @@
 <resources>
+    <string name="tfe_pn_app_name" translation_description="Posenet demo app built with Posenet library [CHAR_LIMIT=40]">TFL Posenet</string>
+    <string name="tfe_pn_request_permission" translation_description="Request camera permission [CHAR_LIMIT=40]">This app needs camera permission.</string>
+    <string name="tfe_pn_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
     <string name="app_name">cap</string>
 
     <string name="preference_file_key">user_info</string>
     <string name="saved_user_gender">gender</string>
     <string name="saved_user_age">age</string>
+
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_main2">test</string>
+
     <string name="saved_exercise">cur_exercise</string>
     <string name="saved_time">cur_time</string>
 
@@ -19,7 +28,4 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_main2">test</string>
 </resources>
