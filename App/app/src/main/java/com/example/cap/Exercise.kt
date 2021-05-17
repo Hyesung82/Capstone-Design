@@ -1,8 +1,9 @@
 package com.example.cap
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.DialogInterface
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
@@ -16,10 +17,17 @@ import com.example.cap.database.ExerciseInfo
 import com.example.cap.database.ExerciseInfoViewModel
 import com.example.cap.database.ExerciseViewModelFactory
 import com.example.cap.database.ExercisesApplication
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
+import kotlin.concurrent.thread
 import kotlin.properties.Delegates
 
 class Exercise : AppCompatActivity() {
+    val TAG = "Exercise"
+
     lateinit var videoView: VideoView
 
     private val exerciseViewModel: ExerciseInfoViewModel by viewModels {
@@ -29,6 +37,10 @@ class Exercise : AppCompatActivity() {
     var weight by Delegates.notNull<Int>()
 
     var interNum = 3
+
+    lateinit var editor: SharedPreferences.Editor
+    lateinit var activity: String
+    lateinit var curExercise: String
 
     /*var mCamera: Camera? = null
     private var mPreview: CameraPreview? = null
@@ -90,6 +102,12 @@ class Exercise : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.exercise)
+
+        val sharedPref = getSharedPreferences(getString(
+            R.string.preference_file_key), Context.MODE_PRIVATE)
+        curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")!!
+        editor = sharedPref.edit()
+
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         savedInstanceState ?: supportFragmentManager.beginTransaction()
             .replace(R.id.camera_preview, PosenetActivity())
@@ -111,17 +129,18 @@ class Exercise : AppCompatActivity() {
             false
         }*/
 
-        var intent = getIntent()
-        var activity = intent.extras?.getString("activity")
+        val intent = intent
+        activity = intent.extras?.getString("activity")!!
+        var rap = 0
+        var set = 0
+
         when (activity) {
             "exercise" -> {
-                // interNum은 이전 액티비티에서 받아올 것
-                interNum = 1
-
                 weight = intent.extras!!.getInt("weight")
 
-                val rap = intent.extras?.getInt("rap")
-                val set = intent.extras?.getInt("set")
+                rap = intent.extras?.getInt("rap")!!
+                set = intent.extras?.getInt("set")!!
+                interNum = rap
 
                 val tvIterNum: TextView = findViewById(R.id.tvIterNum)
                 tvIterNum.text = "${weight}kg ${rap}회 ${set}세트를 수행해주세요"
@@ -141,15 +160,50 @@ class Exercise : AppCompatActivity() {
             }
         }
 
+        val startButton: Button = findViewById(R.id.button_capture)
+        startButton.setOnClickListener {
+            if (activity == "init")
+                networking("http://192.168.247.217:8080/getMVIC")
+            else if (activity == "exercise") {
+                var mvic1 = ""
+                var mvic2 = ""
+                var mvic3 = ""
+
+                when (curExercise) {
+                    "랫풀다운" -> {
+                        mvic1 = sharedPref.getString(getString(R.string.saved_mvic_lat_pull_down1), "")!!
+                        mvic2 = sharedPref.getString(getString(R.string.saved_mvic_lat_pull_down1), "")!!
+                        mvic3 = sharedPref.getString(getString(R.string.saved_mvic_lat_pull_down1), "")!!
+                    }
+
+                    "벤치프레스" -> {
+                        mvic1 = sharedPref.getString(getString(R.string.saved_mvic_bench_press1), "")!!
+                        mvic2 = sharedPref.getString(getString(R.string.saved_mvic_bench_press2), "")!!
+                        mvic3 = sharedPref.getString(getString(R.string.saved_mvic_bench_press3), "")!!
+                    }
+
+                    "스쿼트" -> {
+                        mvic1 = sharedPref.getString(getString(R.string.saved_mvic_squat1), "")!!
+                        mvic2 = sharedPref.getString(getString(R.string.saved_mvic_squat2), "")!!
+                        mvic3 = sharedPref.getString(getString(R.string.saved_mvic_squat3), "")!!
+                    }
+
+                    else -> {
+                        mvic1 = sharedPref.getString(getString(R.string.saved_mvic_dead_lift1), "")!!
+                        mvic2 = sharedPref.getString(getString(R.string.saved_mvic_dead_lift2), "")!!
+                        mvic3 = sharedPref.getString(getString(R.string.saved_mvic_dead_lift3), "")!!
+                    }
+                }
+
+//                networking("http://192.168.247.217:8080/exercise?set=$set&rep=$rap&mvic0=$mvic1&mvic1=$mvic2&mvic2=$mvic3")
+                networking("http://192.168.247.217:8080/exercise?set=1&rep=1&mvic0=$mvic1&mvic1=$mvic2&mvic2=$mvic3")
+            }
+        }
 
         // 테스트용 스킵 버튼
         val skipButton: Button = findViewById(R.id.button_skip)
         skipButton.setOnClickListener {
             val currentTime = System.currentTimeMillis()
-            val sharedPref = getSharedPreferences(
-                getString(R.string.preference_file_key), Context.MODE_PRIVATE)
-            val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")
-            val editor = sharedPref.edit()
             editor.putLong(getString(R.string.saved_time), currentTime)
             editor.commit()
 
@@ -158,25 +212,57 @@ class Exercise : AppCompatActivity() {
             val random = Random()
             val exercise = ExerciseInfo(
                 date = currentTime,
-                exerciseName = curExercise!!,
+                exerciseName = curExercise,
                 achievement = random.nextInt(101))
             exerciseViewModel.insert(exercise)
 
             when (activity) {
-                // Exercise
-                // "exercise" -> startActivity(android.content.Intent(this, ExerciseResult::class.java))
-                "exercise" -> {
-                    exerciseOK()
+                // Initial setting
+                "init" -> {
+                    when (curExercise) {
+                        "벤치프레스" -> {
+                            editor.putBoolean(getString(R.string.saved_initial_bench_press), true)
+                        }
+                        "스쿼트" -> {
+                            editor.putBoolean(getString(R.string.saved_initial_squat), true)
+                        }
+                        "데드리프트" -> {
+                            editor.putBoolean(getString(R.string.saved_initial_dead_lift), true)
+                        }
+                        else -> {
+                            editor.putBoolean(getString(R.string.saved_initial_lat_pull_down), true)
+                        }
+                    }
+
+                    editor.commit()
+                    Setpopup()
                 }
 
                 // RM setting
-                "rm" -> Rmpopup()
+                "rm" -> {
+                    val rm: Float = (weight * (1 + 0.025 * 7)).toFloat()
 
-                // Initial setting
-                else -> {
+                    when (curExercise) {
+                        "벤치프레스" -> {
+                            editor.putFloat(getString(R.string.saved_rm_bench_press), rm)
+                        }
+                        "스쿼트" -> {
+                            editor.putFloat(getString(R.string.saved_rm_squat), rm)
+                        }
+                        "데드리프트" -> {
+                            editor.putFloat(getString(R.string.saved_rm_dead_lift), rm)
+                        }
+                        else -> {
+                            editor.putFloat(getString(R.string.saved_rm_lat_pull_down), rm)
+                        }
+                    }
 
-                    Setpopup()
+                    editor.commit()
+                    Rmpopup()
                 }
+
+                // Exercise
+                else -> exerciseOK(weight, rap, set)
             }
         }
 
@@ -486,16 +572,11 @@ class Exercise : AppCompatActivity() {
 }*/
     }
 
-    private fun exerciseOK() {
-        // 추후에 입력 받는 식으로 변경할 것
-        val numTimes = 3
-        val numSet = 1
-
+    private fun exerciseOK(weight: Int, rap: Int, set: Int) {
         val nextIntent = android.content.Intent(this, ExerciseResult::class.java)
-        val weight = intent.extras!!.getInt("weight")
         nextIntent.putExtra("resultweight", weight)
-        nextIntent.putExtra("resultTimes", numTimes)
-        nextIntent.putExtra("resultSet", numSet)
+        nextIntent.putExtra("resultTimes", rap)
+        nextIntent.putExtra("resultSet", set)
 
         val builder = AlertDialog.Builder(this)
         builder.setMessage("운동 완료")
@@ -507,17 +588,12 @@ class Exercise : AppCompatActivity() {
     }
 
     private fun Rmpopup() {
-        // Calculate RM
-        // 추후에 5kg 단위로 바꿀 것
-        var rmValue = weight + weight * 0.025 * 7
-
         val builder = AlertDialog.Builder(this)
         builder.setMessage("설정 완료")
         builder.setPositiveButton(
             "OK"
         ) { dialogInterface: DialogInterface?, i: Int ->
             val nextIntent = android.content.Intent(this, RmResult::class.java)
-            nextIntent.putExtra("rmValue", rmValue)
             startActivity(nextIntent)
         }
         builder.show()
@@ -536,6 +612,118 @@ class Exercise : AppCompatActivity() {
                 startActivity(nextIntent)
             })
         builder.show()
+    }
+
+    fun networking(urlString: String) {
+        thread(start=true) {
+            try {
+                val url = URL(urlString)
+
+                // 서버와의 연결 생성
+                val urlConnection = url.openConnection() as HttpURLConnection
+                urlConnection.requestMethod = "GET"
+                Log.i(TAG, "responseCode: ${urlConnection.responseCode}")
+
+                if (urlConnection.responseCode == HttpURLConnection.HTTP_OK) {
+                    // 데이터 읽기
+                    val streamReader = InputStreamReader(urlConnection.inputStream)
+                    val buffered = BufferedReader(streamReader)
+
+                    val content = StringBuilder()
+                    while(true) {
+                        val line = buffered.readLine() ?: break
+                        content.append(line)
+                    }
+                    // 스트림과 커넥션 해제
+                    buffered.close()
+                    urlConnection.disconnect()
+                    runOnUiThread {
+                        Log.d(TAG, content.toString())
+
+                        if (activity == "init") {
+                            getMvic(content = content)
+                        }
+                        else {
+                            getResult(content = content)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    fun getMvic(content: StringBuilder) {
+        // activity -> init
+        Log.i(TAG, "센서로부터 받은 MVIC 값: $content")
+        val array = content.split(" ")
+
+        when (curExercise) {
+            "랫풀다운" -> {
+                editor.putString(getString(R.string.saved_mvic_lat_pull_down1), array[0])
+                editor.putString(getString(R.string.saved_mvic_lat_pull_down1), array[1])
+                editor.putString(getString(R.string.saved_mvic_lat_pull_down1), array[2])
+            }
+
+            "벤치프레스" -> {
+                editor.putString(getString(R.string.saved_mvic_bench_press1), array[0])
+                editor.putString(getString(R.string.saved_mvic_bench_press2), array[1])
+                editor.putString(getString(R.string.saved_mvic_bench_press3), array[2])
+            }
+
+            "스쿼트" -> {
+                editor.putString(getString(R.string.saved_mvic_squat1), array[0])
+                editor.putString(getString(R.string.saved_mvic_squat2), array[1])
+                editor.putString(getString(R.string.saved_mvic_squat3), array[2])
+            }
+
+            else -> {
+                editor.putString(getString(R.string.saved_mvic_dead_lift1), array[0])
+                editor.putString(getString(R.string.saved_mvic_dead_lift2), array[1])
+                editor.putString(getString(R.string.saved_mvic_dead_lift3), array[2])
+            }
+        }
+
+        editor.commit()
+    }
+
+    fun getResult(content: StringBuilder) {
+        // activity -> exercise
+        val array1 = content.split(",")
+        var num = 0
+
+        for (a in array1) {
+            val array2 = a.split(" ")
+
+            if (array2[0].toInt() in 26..68) {
+                num++
+            }
+            if (array2[1].toInt() in 46..84) {
+                num++
+            }
+            if (array2[2].toInt() in 37..79) {
+                num++
+            }
+        }
+
+        val accuracy = num / array1.size
+
+        val currentTime = System.currentTimeMillis()
+        editor.putLong(getString(R.string.saved_time), currentTime)
+        editor.commit()
+
+        Log.i(TAG, "운동 완료: $currentTime $curExercise")
+
+        val exercise = ExerciseInfo(
+            date = currentTime,
+            exerciseName = curExercise,
+            achievement = accuracy)
+        exerciseViewModel.insert(exercise)
+
+        val nextIntent = Intent(this, ExerciseResult::class.java)
+        nextIntent.putExtra("accuracy", accuracy)
+        startActivity(nextIntent)
     }
 }
 

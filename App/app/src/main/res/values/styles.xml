@@ -13,4 +13,12 @@
     <style name="exercise_achievement">
         <item name="android:textAppearance">@android:style/TextAppearance.Large</item>
     </style>
+
+    <style name="selection_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:backgroundTint">#BB86FC</item>
+    </style>
 </resources>

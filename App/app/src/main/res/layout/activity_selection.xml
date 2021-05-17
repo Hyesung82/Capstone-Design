@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,73 +8,90 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="20dp"
+    android:background="#F9F1F1"
     tools:context=".ActivitySelection">
 
     <TextView
         android:id="@+id/tvExercise"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_gravity="left"
         android:background="#BB86FC"
-        tools:text="랫풀다운 "
         android:gravity="center_horizontal"
         android:textAlignment="gravity"
-        android:layout_gravity="left"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="랫풀다운 " />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="다음과 같이 센서를 부착해주세요." />
+        android:text="다음과 같이 센서를 부착해주세요."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvExercise" />
 
     <ImageView
         android:id="@+id/ivSensor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:srcCompat="@drawable/sensor_lat_pulldown" />
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSensor" />
 
     <Button
         android:id="@+id/Set"
         android:layout_width="182dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/purple"
         android:text="기본설정"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/RM"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp" />
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/RM"
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
         android:backgroundTint="@color/purple"
         android:text="1RM"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/Exercise"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textSize="20sp" />
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintVertical_bias="0.955" />
 
     <Button
         android:id="@+id/Exercise"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:text="운동하기"
-        android:backgroundTint="@color/purple"
         android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="@color/purple"
+        android:text="운동하기"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
-        android:textSize="20sp" />
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintVertical_bias="0.893" />
+</androidx.constraintlayout.widget.ConstraintLayout>

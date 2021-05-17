@@ -12,13 +12,14 @@
     <application
         android:name=".database.ExercisesApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/heart"
         android:label="@string/app_name"
         android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/heart"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cap."
         android:usesCleartextTraffic="true">
+        <activity android:name=".GoalSetting"></activity>
         <activity android:name=".ExerciseResult" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -33,10 +34,9 @@
         <activity android:name=".WeightInput" />
         <activity android:name=".RmResult" />
         <activity android:name=".fragment" />
-
-        <activity android:name=".basicSetting_sex"/>
-        <activity android:name=".basicSetting_age"/>
-        <activity android:name=".YogaSelection"/>
+        <activity android:name=".basicSetting_sex" />
+        <activity android:name=".basicSetting_age" />
+        <activity android:name=".YogaSelection" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -59,8 +59,7 @@ class WeightInput : AppCompatActivity() {
 
         val bRmWeight: Button = findViewById(R.id.bRmWeight)
         bRmWeight.setOnClickListener{
-            var strWeight: String
-            strWeight = etRmWeight.text.toString()
+            val strWeight: String = etRmWeight.text.toString()
             sendData(strWeight)
             intWeight = strWeight.toInt()
 

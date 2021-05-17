@@ -8,6 +8,28 @@
     <string name="saved_user_gender">gender</string>
     <string name="saved_user_age">age</string>
 
+    <string name="saved_initial_lat_pull_down">initial_lat_pull_down</string>
+    <string name="saved_initial_bench_press">initial_bench_press</string>
+    <string name="saved_initial_squat">initial_squat</string>
+    <string name="saved_initial_dead_lift">initial_dead_lift</string>
+
+    <string name="saved_rm_lat_pull_down">rm_lat_pull_down</string>
+    <string name="saved_rm_bench_press">rm_bench_press</string>
+    <string name="saved_rm_squat">rm_squat</string>
+    <string name="saved_rm_dead_lift">rm_dead_lift</string>
+
+    <string name="saved_mvic_lat_pull_down1">mvic_lat_pull_down1</string>
+    <string name="saved_mvic_lat_pull_down2">mvic_lat_pull_down2</string>
+    <string name="saved_mvic_lat_pull_down3">mvic_lat_pull_down3</string>
+    <string name="saved_mvic_bench_press1">mvic_bench_press1</string>
+    <string name="saved_mvic_bench_press2">mvic_bench_press2</string>
+    <string name="saved_mvic_bench_press3">mvic_bench_press3</string>
+    <string name="saved_mvic_squat1">mvic_squat1</string>
+    <string name="saved_mvic_squat2">mvic_squat2</string>
+    <string name="saved_mvic_squat3">mvic_squat3</string>
+    <string name="saved_mvic_dead_lift1">mvic_dead_lift1</string>
+    <string name="saved_mvic_dead_lift2">mvic_dead_lift2</string>
+    <string name="saved_mvic_dead_lift3">mvic_dead_lift3</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

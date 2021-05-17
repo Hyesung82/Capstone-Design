@@ -62,24 +62,36 @@ class ActivitySelection : AppCompatActivity() {
         }
         val Exercise : Button = findViewById(R.id.Exercise)
         Exercise.setOnClickListener {
-//            val nextIntent = Intent(this, ExerciseWeightInput::class.java)
-            val nextIntent = Intent(this, WeightInput::class.java)
+            val nextIntent = Intent(this, GoalSetting::class.java)
             nextIntent.putExtra("activity", "exercise")
             startActivity(nextIntent)
         }
 
         val intent = intent
         val activity = intent.extras?.getString("activity")
-        Exercise.isEnabled = activity.equals("init") || activity.equals("rm")
+        val initialSetting = when (curExercise) {
+            "랫풀다운" -> sharedPref.getBoolean(getString(R.string.saved_initial_lat_pull_down), false)
+            "벤치프레스" -> sharedPref.getBoolean(getString(R.string.saved_initial_bench_press), false)
+            "스쿼트" -> sharedPref.getBoolean(getString(R.string.saved_initial_squat), false)
+            else -> sharedPref.getBoolean(getString(R.string.saved_initial_dead_lift), false)
+        }
+        val rmSetting = when (curExercise) {
+            "랫풀다운" -> sharedPref.getFloat(getString(R.string.saved_rm_lat_pull_down), 0F)
+            "벤치프레스" -> sharedPref.getFloat(getString(R.string.saved_rm_bench_press), 0F)
+            "스쿼트" -> sharedPref.getFloat(getString(R.string.saved_rm_squat), 0F)
+            else -> sharedPref.getFloat(getString(R.string.saved_rm_dead_lift), 0F)
+        }
+
+        Exercise.isEnabled = initialSetting && (rmSetting > 0)
     }
 
     override fun onPause() {
         super.onPause()
-        if (videoView != null && videoView.isPlaying) videoView.pause()
+        if (videoView.isPlaying) videoView.pause()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        if (videoView != null) videoView.stopPlayback()
+        videoView.stopPlayback()
     }
 }

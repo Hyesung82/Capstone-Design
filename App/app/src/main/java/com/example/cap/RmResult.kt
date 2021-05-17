@@ -1,5 +1,6 @@
 package com.example.cap
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -50,8 +51,18 @@ class RmResult : AppCompatActivity() {
         })
 
         // 서버가 안 될 때, 위 코드 대신 아래 코드가 역할을 함
-        val rmValue = intent.extras!!.getDouble("rmValue")
-        tvRmResult.text = "${rmValue} kg"
+        val sharedPref = getSharedPreferences(getString(
+            R.string.preference_file_key), Context.MODE_PRIVATE)
+        val curExercise = sharedPref.getString(getString(R.string.saved_exercise), "랫풀다운")
+
+        val rm = when (curExercise) {
+            "벤치프레스" -> sharedPref.getFloat(getString(R.string.saved_rm_bench_press), 0F)
+            "스쿼트" -> sharedPref.getFloat(getString(R.string.saved_rm_squat), 0F)
+            "데드리프트" -> sharedPref.getFloat(getString(R.string.saved_rm_dead_lift), 0F)
+            else -> sharedPref.getFloat(getString(R.string.saved_rm_lat_pull_down), 0F)
+        }
+
+        tvRmResult.text = "${rm} kg"
 
         val Ok : Button = findViewById(R.id.OK)
         Ok.setOnClickListener {

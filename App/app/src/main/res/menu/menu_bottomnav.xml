@@ -12,5 +12,5 @@
         <item
             android:id="@+id/mypageItem"
             android:icon="@drawable/favorite"
-            android:title="Mypage" />
+            android:title="My Activity" />
     </menu>

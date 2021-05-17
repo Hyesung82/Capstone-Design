@@ -85,6 +85,7 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
         gExerResult.adapter = galAdapter
 
 
+        val accuracy = intent.extras?.getString("accuracy")
         val weight2 = intent.extras!!.getInt("resultweight")
         val numTimes = intent.extras!!.getInt("resultTimes")
         val numSet = intent.extras!!.getInt("resultSet")
@@ -94,9 +95,6 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
         weight.text = "${weight2}"
         tvTimes.text = "${numTimes}"
         tvSet.text = "${numSet}"
-
-        // TODO: server 주소
-        networking("http://192.168.249.217:8080/getEMG") // 8080
 
         gExerResult.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
             ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
