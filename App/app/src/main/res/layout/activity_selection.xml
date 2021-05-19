@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:paddingTop="20dp"
+    android:padding="20dp"
     android:background="#F9F1F1"
     tools:context=".ActivitySelection">
 
@@ -28,6 +26,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="다음과 같이 센서를 부착해주세요."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,24 +39,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:srcCompat="@drawable/sensor_lat_pulldown" />
+        tools:srcCompat="@drawable/sensor_lat_pulldown"
+        android:contentDescription="센서 사진" />
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSensor" />
 
     <Button
         android:id="@+id/Set"
-        android:layout_width="182dp"
+        android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
         android:backgroundTint="@color/purple"
-        android:text="기본설정"
+        android:text="기본 설정"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/RM"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,22 +67,20 @@
         android:id="@+id/RM"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
         android:backgroundTint="@color/purple"
-        android:text="1RM"
+        android:text="1RM 측정"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/Exercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/Set"
         app:layout_constraintVertical_bias="0.955" />
 
     <Button
         android:id="@+id/Exercise"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="30dp"
         android:backgroundTint="@color/purple"
         android:text="운동하기"
         android:textSize="20sp"
@@ -92,6 +88,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/RM"
         app:layout_constraintVertical_bias="0.893" />
 </androidx.constraintlayout.widget.ConstraintLayout>
