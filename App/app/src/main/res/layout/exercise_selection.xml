@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="@color/background_pink"
+    android:padding="@dimen/big_padding"
     tools:context=".ExerciseSelection"
-    android:background="#F9F1F1"
     tools:ignore="MissingClass">
 
-    <!--    <Button-->
-<!--        android:id="@+id/Latpull"-->
-<!--        android:layout_width="360dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        android:layout_marginTop="8dp"-->
-<!--        android:background="@drawable/latpulldown"-->
-<!--        android:text="랫풀다운"-->
-<!--        android:textSize="20sp"-->
-
-<!--    />-->
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
        android:gravity="center_horizontal"
-       android:layout_marginTop="50dp">
+       android:layout_marginTop="20dp">
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-
            android:fontFamily="sans-serif-medium"
            android:text="오늘 운동시간 "
-           android:textSize="25sp"
-           />
+           android:textSize="25sp" />
 
        <TextView
            android:layout_width="wrap_content"
@@ -45,27 +31,23 @@
            android:layout_marginLeft="40dp"
            android:fontFamily="sans-serif-medium"
            android:text="전일 대비 "
-           android:textSize="25sp"
-           />
+           android:textSize="25sp" />
    </LinearLayout>
 
-
-
     <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:gravity="left"
-        android:fontFamily="sans-serif-medium"
-        android:text="0분 "
-        android:textSize="20sp" />
+            android:fontFamily="sans-serif-medium"
+            android:text="0분 "
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,47 +55,47 @@
             android:layout_marginLeft="100dp"
             android:gravity="right"
             android:fontFamily="sans-serif-medium"
-            android:text="변동없음 "
+            android:text="변동 없음"
             android:textSize="20sp" />
     </LinearLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp">
 
-    <ImageButton
-        android:id="@+id/Latpull"
-        android:layout_width="368dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/latpulldown_icon" />
-    <ImageButton
-        android:id="@+id/Bench"
-        android:layout_width="368dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/bench" />
-    <ImageButton
-        android:id="@+id/Squat"
-        android:layout_width="368dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/squat" />
-    <ImageButton
-        android:id="@+id/Deadlift"
-        android:layout_width="368dp"
-        android:layout_height="110dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="21dp"
-        android:background="@drawable/deadlift" />
+        <ImageButton
+            android:id="@+id/Latpull"
+            android:layout_width="368dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/latpulldown_icon" />
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/Bench"
+            android:layout_width="368dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/bench" />
 
+        <ImageButton
+            android:id="@+id/Squat"
+            android:layout_width="368dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/squat" />
 
+        <ImageButton
+            android:id="@+id/Deadlift"
+            android:layout_width="368dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="21dp"
+            android:background="@drawable/deadlift" />
 
+    </LinearLayout>
 </LinearLayout>

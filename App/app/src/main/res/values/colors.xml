@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="purple">#9916AF</color>
+
+    <color name="background_pink">#F9F1F1</color>
+    <color name="button_light_purple">#BB86FC</color>
 </resources>

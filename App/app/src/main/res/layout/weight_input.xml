@@ -8,17 +8,18 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="300dp"
+    android:background="@color/background_pink"
     tools:context=".WeightInput">
 
     <TextView
         android:id="@+id/tvWeightInput"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:layout_marginBottom="10dp"
-        android:textSize="18dp"
-        android:text="충분히 무겁다 생각하는 무게를 입력해주세요." />
+        android:textSize="@dimen/instruction_text"
+        android:text="충분히 무겁다고 생각하는 무게를 입력해주세요." />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,8 +44,7 @@
             android:id="@+id/bRmWeight"
             android:layout_width="70dp"
             android:layout_height="50dp"
-            android:backgroundTint="#BB86FC"
-            android:gravity="center_horizontal"
+            android:backgroundTint="@color/purple"
             android:text="OK"
             android:textSize="15sp"
             android:layout_weight="1" />

@@ -8,6 +8,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="250dp"
+    android:background="@color/background_pink"
     tools:context=".RmResult">
 
     <TextView
@@ -36,9 +37,8 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:backgroundTint="#BB86FC"
         android:gravity="center"
         android:text="OK"
-        android:textSize="20dp" />
+        style="@style/normal_button" />
 
 </LinearLayout>

@@ -6,9 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F1F1"
-    android:paddingHorizontal="30dp"
-    android:paddingTop="30dp">
+    android:background="@color/background_pink"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="@dimen/big_padding">
 
     <LinearLayout
         android:id="@+id/linearLayout"
