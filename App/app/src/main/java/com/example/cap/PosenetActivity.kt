@@ -17,6 +17,7 @@
 package com.example.cap
 
 import android.Manifest
+import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
@@ -206,7 +207,7 @@ class PosenetActivity :
   override fun onStart() {
     super.onStart()
     openCamera()
-    posenet = Posenet(this.context!!)
+    posenet = Posenet(this.requireContext())
   }
 
   override fun onPause() {
@@ -251,16 +252,15 @@ class PosenetActivity :
    * Sets up member variables related to camera.
    */
   private fun setUpCameraOutputs() {
-    val activity = activity
-    val manager = activity!!.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+    val activity = requireActivity();
+    val manager = activity.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     try {
       for (cameraId in manager.cameraIdList) {
         val characteristics = manager.getCameraCharacteristics(cameraId)
 
         // We don't use a front facing camera in this sample.
         val cameraDirection = characteristics.get(CameraCharacteristics.LENS_FACING)
-        if (cameraDirection != null &&
-          cameraDirection == CameraCharacteristics.LENS_FACING_FRONT
+        if (cameraDirection != null && cameraDirection == CameraCharacteristics.LENS_FACING_BACK
         ) {
           continue
         }
@@ -269,10 +269,10 @@ class PosenetActivity :
 
         imageReader = ImageReader.newInstance(
           PREVIEW_WIDTH, PREVIEW_HEIGHT,
-          ImageFormat.YUV_420_888, /*maxImages*/ 2
+          ImageFormat.YUV_420_888, /*maxImages*/ 1
         )
 
-        sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)!!
+        sensorOrientation = characteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)
 
         previewHeight = previewSize!!.height
         previewWidth = previewSize!!.width
@@ -304,14 +304,14 @@ class PosenetActivity :
    * Opens the camera specified by [PosenetActivity.cameraId].
    */
   private fun openCamera() {
-    val permissionCamera = getContext()!!.checkPermission(
+    val permissionCamera = requireContext().checkPermission(
       Manifest.permission.CAMERA, Process.myPid(), Process.myUid()
     )
     if (permissionCamera != PackageManager.PERMISSION_GRANTED) {
       requestCameraPermission()
     }
     setUpCameraOutputs()
-    val manager = activity!!.getSystemService(Context.CAMERA_SERVICE) as CameraManager
+    val manager = activity?.getSystemService(Context.CAMERA_SERVICE) as CameraManager
     try {
       // Wait for camera to open - 2.5 seconds is sufficient
       if (!cameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
@@ -415,7 +415,7 @@ class PosenetActivity :
 
       // Create rotated version for portrait display
       val rotateMatrix = Matrix()
-      rotateMatrix.postRotate(90.0f)
+      rotateMatrix.postRotate(270.0f)
 
       val rotatedBitmap = Bitmap.createBitmap(
         imageBitmap, 0, 0, previewWidth, previewHeight,
@@ -471,6 +471,7 @@ class PosenetActivity :
     paint.strokeWidth = 8.0f
   }
 
+  //카메라 크기 조정하는 부분
   /** Draw bitmap on Canvas.   */
   private fun draw(canvas: Canvas, person: Person, bitmap: Bitmap) {
     canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
@@ -481,19 +482,12 @@ class PosenetActivity :
     val right: Int
     val top: Int
     val bottom: Int
-    if (canvas.height > canvas.width) {
-      screenWidth = canvas.width
-      screenHeight = canvas.width
-      left = 0
-      top = (canvas.height - canvas.width) / 2
-    } else {
-      screenWidth = canvas.height
-      screenHeight = canvas.height
-      left = (canvas.width - canvas.height) / 2
-      top = 0
-    }
-    right = left + screenWidth
-    bottom = top + screenHeight
+    screenWidth = canvas.width
+    screenHeight = canvas.height
+    left = 0 //왼쪽좌표
+    top = 50 //위쪽좌표
+    right = screenWidth //오른쪽좌표
+    bottom = top + screenHeight //아래쪽좌표
 
     setPaint()
     canvas.drawBitmap(
@@ -530,26 +524,6 @@ class PosenetActivity :
         )
       }
     }
-
-    canvas.drawText(
-      "Score: %.2f".format(person.score),
-      (15.0f * widthRatio),
-      (30.0f * heightRatio + bottom),
-      paint
-    )
-    canvas.drawText(
-      "Device: %s".format(posenet.device),
-      (15.0f * widthRatio),
-      (50.0f * heightRatio + bottom),
-      paint
-    )
-    canvas.drawText(
-      "Time: %.2f ms".format(posenet.lastInferenceTimeNanos * 1.0f / 1_000_000),
-      (15.0f * widthRatio),
-      (70.0f * heightRatio + bottom),
-      paint
-    )
-
     // Draw!
     surfaceHolder!!.unlockCanvasAndPost(canvas)
   }
@@ -645,8 +619,8 @@ class PosenetActivity :
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
       AlertDialog.Builder(activity)
-        .setMessage(arguments!!.getString(ARG_MESSAGE))
-        .setPositiveButton(android.R.string.ok) { _, _ -> activity!!.finish() }
+        .setMessage(requireArguments().getString(ARG_MESSAGE))
+        .setPositiveButton(android.R.string.ok) { _, _ -> activity?.finish() }
         .create()
 
     companion object {

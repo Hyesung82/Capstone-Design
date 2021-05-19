@@ -45,59 +45,10 @@
         <FrameLayout
             android:id="@+id/camera_preview"
             android:layout_width="match_parent"
-            android:layout_height="236dp"
+            android:layout_height="500dp"
             tools:context="com.example.cap.CameraActivity">
 
         </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <ImageView
-                android:id="@+id/iv_picture1"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture2"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture3"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture4"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture5"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture6"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-
-            <ImageView
-                android:id="@+id/iv_picture7"
-                android:layout_width="@dimen/picture_preview_width"
-                android:layout_height="@dimen/picture_preview_height"
-                tools:srcCompat="@tools:sample/avatars" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/button_capture"
@@ -106,7 +57,8 @@
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:backgroundTint="#BB86FC"
-            android:text="운동 시작" />
+            android:text="운동 시작"
+            android:textColor="@color/black"/>
 
         <Button
             android:id="@+id/button_skip"
@@ -114,7 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:backgroundTint="#BB86FC"
-            android:text="운동 완료" />
+            android:text="운동 완료"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
