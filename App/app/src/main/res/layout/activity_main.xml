@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="150dp"
-        android:text="나만을 위한\n셀피티\nSelf PT"
+        android:text="나만을 위한\nSELF PT\n셀피티"
         android:textColor="@color/purple"
         android:textSize="50sp"
         android:textStyle="bold"
