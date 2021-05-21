@@ -213,7 +213,7 @@ class Exercise : AppCompatActivity() {
             val exercise = ExerciseInfo(
                 date = currentTime,
                 exerciseName = curExercise,
-                achievement = random.nextInt(101))
+                achievement = (random.nextInt(26)) + 75)
             exerciseViewModel.insert(exercise)
 
             when (activity) {

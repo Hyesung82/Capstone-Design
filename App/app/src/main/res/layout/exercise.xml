@@ -34,6 +34,7 @@
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toTopOf="@+id/button_capture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +48,8 @@
         style="@style/normal_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"
         android:text="운동 시작"
         app:layout_constraintBottom_toTopOf="@+id/button_skip"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,11 +57,11 @@
 
     <Button
         android:id="@+id/button_skip"
-        style="@style/normal_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:text="운동 완료"
+        android:background="@drawable/button"
+        style="@style/normal_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

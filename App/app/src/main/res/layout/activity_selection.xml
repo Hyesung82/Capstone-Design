@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_pink"
     android:orientation="vertical"
     android:padding="@dimen/big_padding"
-    android:background="@color/background_pink"
     tools:context=".ActivitySelection">
 
     <TextView
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:text="다음과 같이 센서를 부착해주세요."
+        android:text="다음과 같이 센서를 부착하고 운동을 수행해주세요."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvExercise" />
@@ -36,55 +36,46 @@
         android:id="@+id/ivSensor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="센서 사진"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:srcCompat="@drawable/sensor_lat_pulldown"
-        android:contentDescription="센서 사진" />
+        tools:srcCompat="@drawable/sensor_lat_pulldown" />
 
     <VideoView
         android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivSensor" />
 
     <Button
         android:id="@+id/Set"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:text="기본 설정"
         style="@style/normal_button"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"
+        android:text="기본 설정"
         app:layout_constraintBottom_toTopOf="@+id/RM"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/RM"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:text="1RM 측정"
         style="@style/normal_button"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/button"
+        android:text="1RM 측정"
         app:layout_constraintBottom_toTopOf="@+id/Exercise"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Set"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/Exercise"
-        android:layout_width="180dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="30dp"
-        android:text="운동하기"
         style="@style/normal_button"
+        android:background="@drawable/button"
+        android:text="운동하기"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RM"
-        app:layout_constraintVertical_bias="0.893" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

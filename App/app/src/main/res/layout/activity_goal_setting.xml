@@ -5,19 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_pink"
+    android:padding="@dimen/big_padding"
     tools:context=".GoalSetting">
-
-    <Button
-        android:id="@+id/bGoal1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="근력 증가"
-        style="@style/normal_button"
-        app:layout_constraintBottom_toTopOf="@+id/bGoal2"
-        app:layout_constraintEnd_toEndOf="@+id/bGoal2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/bGoal2"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView7"
@@ -35,22 +24,31 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
+        android:id="@+id/bGoal1"
+        android:text="근력 증가"
+        android:background="@drawable/button"
+        style="@style/normal_button"
+        app:layout_constraintBottom_toTopOf="@+id/bGoal2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <Button
         android:id="@+id/bGoal2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:text="근비대 향상"
+        android:background="@drawable/button"
         style="@style/normal_button"
         app:layout_constraintBottom_toTopOf="@+id/bGoal3"
-        app:layout_constraintEnd_toEndOf="@+id/bGoal3"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/bGoal3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bGoal1" />
 
     <Button
         android:id="@+id/bGoal3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="근지구력 강화"
+        android:background="@drawable/button"
         style="@style/normal_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

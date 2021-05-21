@@ -75,14 +75,14 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
         val tvTimes : TextView = findViewById(R.id.tvTimes)
         val tvSet : TextView = findViewById(R.id.tvSet)
 
-        val ivFeedback: ImageView = findViewById(R.id.ivFeedback)
-        ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
-        ivFeedback.setImageResource(feedbackImages[0])
-        val tvFeedback: TextView = findViewById(R.id.tvFeedback)
-        tvFeedback.text = feedbackText[0]
-        val gExerResult: Gallery = findViewById(R.id.gExerResult)
-        val galAdapter = MyGalleryAdapter(this)
-        gExerResult.adapter = galAdapter
+//        val ivFeedback: ImageView = findViewById(R.id.ivFeedback)
+//        ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
+//        ivFeedback.setImageResource(feedbackImages[0])
+//        val tvFeedback: TextView = findViewById(R.id.tvFeedback)
+//        tvFeedback.text = feedbackText[0]
+//        val gExerResult: Gallery = findViewById(R.id.gExerResult)
+//        val galAdapter = MyGalleryAdapter(this)
+//        gExerResult.adapter = galAdapter
 
 
         val accuracy = intent.extras?.getString("accuracy")
@@ -96,12 +96,12 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
         tvTimes.text = "${numTimes}"
         tvSet.text = "${numSet}"
 
-        gExerResult.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
-            ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
-            ivFeedback.setImageResource(feedbackImages[i])
-
-            tvFeedback.text = feedbackText[i]
-        }
+//        gExerResult.setOnItemClickListener { adapterView: AdapterView<*>, view1: View, i: Int, l: Long ->
+//            ivFeedback.scaleType = ImageView.ScaleType.FIT_XY
+//            ivFeedback.setImageResource(feedbackImages[i])
+//
+//            tvFeedback.text = feedbackText[i]
+//        }
 
         button.setOnClickListener {
             val nextIntent = Intent(this, fragment::class.java)
@@ -152,8 +152,8 @@ class ExerciseResult : AppCompatActivity(), ProgressFormatter {
                     urlConnection.disconnect()
                     runOnUiThread {
                         Log.i("ExerciseResult", "센서로부터 받은 데이터: $content")
-                        val tvMuscle = findViewById<TextView>(R.id.tvMuscle)
-                        tvMuscle.text = "센서로부터 받은 데이터: $content"
+//                        val tvMuscle = findViewById<TextView>(R.id.tvMuscle)
+//                        tvMuscle.text = "센서로부터 받은 데이터: $content"
                     }
                 }
             } catch (e: Exception) {

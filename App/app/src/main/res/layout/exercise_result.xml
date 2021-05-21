@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/background_pink"
+    android:padding="@dimen/big_padding"
     tools:ignore="MissingConstraints">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -24,8 +25,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
-            android:padding="@dimen/big_padding"
-            android:gravity="left"
             android:text="RESULT"
             android:textStyle="bold"
             android:textColor="@color/purple_200"
@@ -35,13 +34,14 @@
             android:id="@+id/cpb_circlebar"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
             app:progress_text_size="50sp"
             app:style="solid_line"
             app:progress_stroke_width="10dp "
             app:progress_stroke_cap="round"
             app:progress_start_color="#FFBB00"
-            app:progress_end_color="#ABF200"
-            android:layout_gravity="center" />
+            app:progress_end_color="#ABF200" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -49,71 +49,55 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:padding="5dp">
+        android:paddingVertical="5dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
             android:background="@drawable/layout_bg"
-            android:layout_margin="5dp">
+            android:padding="10dp" >
 
-            <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:padding="10dp">
+            <TextView
+                android:id="@+id/resultweight"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="5dp"
+                android:ems="10"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                tools:text="result" />
 
-                <TextView
-                    android:id="@+id/resultweight"
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:ems="10"
-                    android:gravity="center_horizontal"
-                    android:inputType="number"
-                    android:textAlignment="center"
-                    android:textSize="20sp"
-                    tools:text="result" />
-
-                <TextView
-                    android:id="@+id/kg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="kg"
-                    android:textAlignment="center"
-                    android:textColor="@color/purple"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="kg"
+                android:textAlignment="center"
+                android:textColor="@color/purple"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="50dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:background="@drawable/layout_bg"
             android:layout_margin="10dp"
-            android:gravity="center">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:gravity="center"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvTimes"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="5dp"
                 android:ems="10"
-                android:gravity="center"
-                android:inputType="number"
                 android:text=""
                 android:textAlignment="center"
                 android:textSize="20sp" />
@@ -123,13 +107,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center_horizontal"
                 android:text="회"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -138,17 +120,15 @@
             android:orientation="horizontal"
             tools:ignore="MissingConstraints"
             android:background="@drawable/layout_bg"
-            android:layout_margin="5dp">
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/tvSet"
-                android:layout_width="50dp"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
                 android:ems="10"
-                android:gravity="center_horizontal"
-                android:inputType="number"
                 android:text=""
                 android:textAlignment="center"
                 android:textSize="20sp" />
@@ -158,9 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:gravity="center_horizontal"
                 android:text="세트"
-                android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -172,61 +150,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Feedback"
+        android:textSize="24sp"
         android:textColor="@color/purple"
         android:textStyle="bold"
         android:textAlignment="center"
         android:gravity="center_horizontal"
-        android:layout_margin="10dp"/>
+        android:layout_marginTop="20dp"
+        android:paddingVertical="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginHorizontal="@dimen/big_padding"
         android:orientation="horizontal"
         android:gravity="center">
 
-        <ImageView
-            android:id="@+id/ivFeedback"
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/ivFeedback"-->
+<!--            android:layout_width="0px"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            tools:srcCompat="@tools:sample/avatars"/>-->
 
         <TextView
             android:id="@+id/tvFeedback"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="20dp"
             android:layout_weight="1"
-            tools:text="Feedback"/>
+            android:padding="10dp"
+            android:textSize="24sp"
+            android:background="@color/white"
+            android:text="- 양팔 간격을 더 넓게 하세요.\n- 광배근에 더 힘을 주세요."/>
     </LinearLayout>
 
-    <Gallery
-        android:id="@+id/gExerResult"
+<!--    <Gallery-->
+<!--        android:id="@+id/gExerResult"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="10dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvMuscle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:padding="5dp"-->
+<!--        android:text="근전도 값 테스트"-->
+<!--        android:textAlignment="center"-->
+<!--        android:gravity="center_horizontal" />-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvMuscle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:text="근전도 값 테스트"
-        android:textAlignment="center"
-        android:gravity="center_horizontal" />
+        <ImageButton
+            android:id="@+id/button"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/home"
+            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageButton
-        android:id="@+id/button"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
-        android:background="@drawable/home" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="HOME" />
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOME"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

@@ -5,10 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F9F1F1"
+    android:background="@color/background_pink"
+    android:orientation="vertical"
+    android:padding="@dimen/big_padding"
     tools:context=".basicSetting_sex"
-    tools:ignore="MissingClass"
-    android:orientation="vertical">
+    tools:ignore="MissingClass">
 
    <androidx.appcompat.widget.LinearLayoutCompat
        android:layout_width="match_parent"
