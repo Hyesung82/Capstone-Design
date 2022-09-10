@@ -1,6 +1,5 @@
 # 셀피티(SelfPT)
-ITCAE Capstone Design  
-https://www.notion.so/c760c6c780d445a38cd08822ba7065d6?v=0900b163945143fe94d81068a84e61a0  
+ITCAE Capstone Design   
 
 <img height=500 src=https://user-images.githubusercontent.com/39328846/143766747-1fbda779-f632-42fc-82ee-02fe2cf5959c.jpg> <img height=500 src=https://user-images.githubusercontent.com/39328846/143766685-5df5e727-e882-42bd-818c-b947303d0eab.jpg>
 
