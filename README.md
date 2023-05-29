@@ -1,8 +1,4 @@
 # 셀피티(SelfPT)
-ITCAE Capstone Design   
-
-<img height=500 src=https://user-images.githubusercontent.com/39328846/143766747-1fbda779-f632-42fc-82ee-02fe2cf5959c.jpg> <img height=500 src=https://user-images.githubusercontent.com/39328846/143766685-5df5e727-e882-42bd-818c-b947303d0eab.jpg>
-
 ![셀피티01](https://user-images.githubusercontent.com/39328846/139703090-e2b19e74-ad40-4530-9009-d519c3fc6aea.png)
 ![셀피티-02-목차](https://user-images.githubusercontent.com/39328846/139703301-7baca3a5-e0eb-482b-a057-e426b43a2c8d.png)
 ![셀피티-03-서론](https://user-images.githubusercontent.com/39328846/139703338-702e590c-41df-47f9-8147-d01e62778927.png)
